@@ -689,15 +689,19 @@
                 const imgAspect = img.width / img.height;
                 const frameAspect = F_w / F_h;
 
-                // Logic: Aspect Fill (Cover) - Ensure image covers the frame at zoom 1.0
+                // Logic: Aspect Fit (Contain) - Priorities showing WHOLE image
+                // The user complained about "incomplete" image in Fill mode.
+
                 if (imgAspect > frameAspect) {
-                    // Image is wider, match Height, Width will be larger
-                    drawH = F_h;
-                    drawW = drawH * imgAspect;
-                } else {
-                    // Image is taller, match Width, Height will be larger
+                    // Image is wider than Frame (relative to aspect).
+                    // To fit it, we must match the Width. Height will be smaller (letterbox).
                     drawW = F_w;
                     drawH = drawW / imgAspect;
+                } else {
+                    // Image is taller than Frame.
+                    // To fit it, we must match the Height. Width will be smaller (pillarbox).
+                    drawH = F_h;
+                    drawW = drawH * imgAspect;
                 }
 
                 // Apply Zoom
