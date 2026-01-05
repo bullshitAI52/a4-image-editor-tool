@@ -503,6 +503,9 @@
                             value="2" min="1"></div>
                     <div class="input-group"><label for="tileGap">间隙:</label><input type="number" id="tileGap" value="5"
                             min="0"><span>mm</span></div>
+                    <!-- Added Background Color Picker -->
+                    <div class="input-group"><label for="pageBgColor">底色:</label><input type="color" id="pageBgColor"
+                            value="#ffffff"></div>
                     <div class="control-group">
                         <label for="clearBeforeTiling" style="font-weight:normal; min-width:auto;">
                             <input type="checkbox" id="clearBeforeTiling"> 平铺前清空起始页内容
@@ -577,6 +580,7 @@
         const tileRowsInput = document.getElementById('tileRows');
         const tileColsInput = document.getElementById('tileCols');
         const tileGapInput = document.getElementById('tileGap');
+        const pageBgColorInput = document.getElementById('pageBgColor');
         const applyTilingBtn = document.getElementById('applyTilingBtn');
         const clearBeforeTilingCheckbox = document.getElementById('clearBeforeTiling');
         const imageEditControlsPanel = document.getElementById('imageEditControls');
@@ -616,6 +620,13 @@
         function mmToPx(mm) { return (mm / 25.4) * DPI; }
         function updateMargins() { marginTopPx = mmToPx(parseFloat(marginTopInput.value) || 0); marginRightPx = mmToPx(parseFloat(marginRightInput.value) || 0); marginBottomPx = mmToPx(parseFloat(marginBottomInput.value) || 0); marginLeftPx = mmToPx(parseFloat(marginLeftInput.value) || 0); if (documentPages.length > 0) { drawCanvas(); renderPagePreviews(); } }
         [marginTopInput, marginRightInput, marginBottomInput, marginLeftInput].forEach(input => input.onchange = updateMargins);
+
+        // Update bg color on change
+        pageBgColorInput.oninput = () => {
+            drawCanvas();
+            renderPagePreviews();
+        };
+
         function createNewPage() { return { images: [] }; }
         function createNewImageItemDefaults(imgObj, x, y, width, height, isTiled = false) { return { imgObj: imgObj, x: x, y: y, width: width, height: height, originalWidth: imgObj.width, originalHeight: imgObj.height, rotation: 0, alpha: 1, filters: { brightness: 100, contrast: 100, saturate: 100 }, isTiled: isTiled, sequenceNumber: null, zoomLevel: 1.0, panOffset: { x: 0, y: 0 } }; }
         function addPage() { documentPages.push(createNewPage()); navigateToPage(documentPages.length - 1, true); }
@@ -627,10 +638,13 @@
 
         function drawCanvas(targetCtx = ctx, targetCanvas = canvas, isPreview = false, pageToDrawIndex = currentPageIndex, showSequenceNumbers = true) {
             const page = documentPages[pageToDrawIndex];
-            if (!page) { targetCtx.clearRect(0, 0, targetCanvas.width, targetCanvas.height); targetCtx.fillStyle = 'white'; targetCtx.fillRect(0, 0, targetCanvas.width, targetCanvas.height); return; }
+            // Use the selected background color
+            const bgColor = (typeof pageBgColorInput !== 'undefined' && pageBgColorInput && pageBgColorInput.value) ? pageBgColorInput.value : '#ffffff';
+
+            if (!page) { targetCtx.clearRect(0, 0, targetCanvas.width, targetCanvas.height); targetCtx.fillStyle = bgColor; targetCtx.fillRect(0, 0, targetCanvas.width, targetCanvas.height); return; }
 
             targetCtx.clearRect(0, 0, targetCanvas.width, targetCanvas.height);
-            targetCtx.fillStyle = 'white';
+            targetCtx.fillStyle = bgColor;
             targetCtx.fillRect(0, 0, targetCanvas.width, targetCanvas.height);
 
             if (!isPreview) { targetCtx.strokeStyle = '#cccccc'; targetCtx.lineWidth = 1; targetCtx.strokeRect(marginLeftPx, marginTopPx, targetCanvas.width - marginLeftPx - marginRightPx, targetCanvas.height - marginTopPx - marginBottomPx); }
