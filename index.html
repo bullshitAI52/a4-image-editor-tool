@@ -810,11 +810,15 @@
                         const imgAspect = imgToTile.width / imgToTile.height;
                         const cellAspect = cellWidth / cellHeight;
 
-                        // "Contain" logic not "Fill"
+                        // "Cover/Fill" logic: fill cell completely (cropping excess)
+                        // If image is wider than cell (relative to aspect), we must match Height (width will be larger)
+                        // If image is taller than cell, we must match Width (height will be larger)
                         if (imgAspect > cellAspect) {
-                            newH = newW / imgAspect;
-                        } else {
+                            newH = cellHeight;
                             newW = newH * imgAspect;
+                        } else {
+                            newW = cellWidth;
+                            newH = newW / imgAspect;
                         }
 
                         // Center image
