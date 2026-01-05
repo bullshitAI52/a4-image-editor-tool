@@ -802,12 +802,26 @@
                 for (let r = 0; r < rows && imageSourceIndex < totalImagesToTile; r++) {
                     for (let c = 0; c < cols && imageSourceIndex < totalImagesToTile; c++) {
                         const imgDataFromGallery = imagesToTile[imageSourceIndex];
-
                         const imgToTile = imgDataFromGallery.originalImage;
-                        const itemX = marginLeftPx + c * (cellWidth + gapPx);
-                        const itemY = marginTopPx + r * (cellHeight + gapPx);
 
-                        const newItem = createNewImageItemDefaults(imgToTile, itemX, itemY, cellWidth, cellHeight, true);
+                        // FIX: Preserve aspect ratio logic
+                        let newW = cellWidth;
+                        let newH = cellHeight;
+                        const imgAspect = imgToTile.width / imgToTile.height;
+                        const cellAspect = cellWidth / cellHeight;
+
+                        // "Contain" logic not "Fill"
+                        if (imgAspect > cellAspect) {
+                            newH = newW / imgAspect;
+                        } else {
+                            newW = newH * imgAspect;
+                        }
+
+                        // Center image
+                        const itemX = marginLeftPx + c * (cellWidth + gapPx) + (cellWidth - newW) / 2;
+                        const itemY = marginTopPx + r * (cellHeight + gapPx) + (cellHeight - newH) / 2;
+
+                        const newItem = createNewImageItemDefaults(imgToTile, itemX, itemY, newW, newH, true);
                         newItem.sequenceNumber = imageSourceIndex + 1;
                         page.images.push(newItem);
                         imageSourceIndex++;
