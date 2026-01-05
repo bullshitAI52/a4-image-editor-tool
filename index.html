@@ -835,8 +835,92 @@
         };
         function getMousePos(cvs, evt) { const rect = cvs.getBoundingClientRect(); const scaleX = cvs.width / rect.width; const scaleY = cvs.height / rect.height; return { x: (evt.clientX - rect.left) * scaleX, y: (evt.clientY - rect.top) * scaleY }; }
         function isPointInRect(px, py, rx, ry, rw, rh) { return px >= rx && px <= rx + rw && py >= ry && py <= ry + rh; }
-        function getHandleAt(mousePos, item) { const hHit = handleHitRadius; if (Math.abs(mousePos.x - item.x) < hHit && Math.abs(mousePos.y - item.y) < hHit) return 'tl'; if (Math.abs(mousePos.x - (item.x + item.width)) < hHit && Math.abs(mousePos.y - item.y) < hHit) return 'tr'; if (Math.abs(mousePos.x - item.x) < hHit && Math.abs(mousePos.y - (item.y + item.height)) < hHit) return 'bl'; if (Math.abs(mousePos.x - (item.x + item.width)) < hHit && Math.abs(mousePos.y - (item.y + item.height)) < hHit) return 'br'; const rotHandleX = item.x + item.width / 2; const rotHandleY = item.y - handleSize * 1.5; const dxRot = mousePos.x - rotHandleX; const dyRot = mousePos.y - rotHandleY; if (dxRot * dxRot + dyRot * dyRot <= (handleSize / 1.5 + hHit - handleSize / 2) * (handleSize / 1.5 + hHit - handleSize / 2)) return 'rot'; return null; }
-        canvas.onmousedown = (e) => { const mousePos = getMousePos(canvas, e); const page = documentPages[currentPageIndex]; if (!page) return; isDraggingFrame = false; isResizingFrame = false; isRotatingContent = false; isPanningContent = false; let newSelectedImage = null; let clickedOnExistingSelectionHandle = false; if (selectedImageOnCanvas) { resizeHandle = getHandleAt(mousePos, selectedImageOnCanvas); if (resizeHandle) { clickedOnExistingSelectionHandle = true; newSelectedImage = selectedImageOnCanvas; initialInteractionState = { item: selectedImageOnCanvas, handle: resizeHandle, originalX: selectedImageOnCanvas.x, originalY: selectedImageOnCanvas.y, originalWidth: selectedImageOnCanvas.width, originalHeight: selectedImageOnCanvas.height, originalRotation: selectedImageOnCanvas.rotation || 0, originalZoom: selectedImageOnCanvas.zoomLevel || 1.0, originalPanX: (selectedImageOnCanvas.panOffset && selectedImageOnCanvas.panOffset.x) || 0, originalPanY: (selectedImageOnCanvas.panOffset && selectedImageOnCanvas.panOffset.y) || 0, mouseDownPos: mousePos, itemCenterX: selectedImageOnCanvas.x + selectedImageOnCanvas.width / 2, itemCenterY: selectedImageOnCanvas.y + selectedImageOnCanvas.height / 2, }; initialInteractionState.initialMouseAngleToCenter = Math.atan2(mousePos.y - initialInteractionState.itemCenterY, mousePos.x - initialInteractionState.itemCenterX); if (resizeHandle === 'rot') { isRotatingContent = true; } else { isResizingFrame = true; } } } if (!isResizingFrame && !isRotatingContent) { for (let i = page.images.length - 1; i >= 0; i--) { const item = page.images[i]; if (isPointInRect(mousePos.x, mousePos.y, item.x, item.y, item.width, item.height)) { newSelectedImage = item; if (e.altKey || e.ctrlKey) { isPanningContent = true; initialInteractionState = { item: item, originalPanX: (item.panOffset && item.panOffset.x) || 0, originalPanY: (item.panOffset && item.panOffset.y) || 0, mouseDownPos: mousePos }; } else { isDraggingFrame = true; dragOffsetX = mousePos.x - item.x; dragOffsetY = mousePos.y - item.y; } if (selectedImageOnCanvas !== item && !isPanningContent && !item.isTiled) { page.images.splice(i, 1); page.images.push(item); } break; } } } if (newSelectedImage && newSelectedImage !== selectedImageOnCanvas) { selectedImageOnCanvas = newSelectedImage; } else if (!newSelectedImage && !clickedOnExistingSelectionHandle) { selectedImageOnCanvas = null; } updateImageEditControls(); drawCanvas(); };
+        function getHandleAt(mousePos, item) {
+            // FIX: Hide resizing handles for tiled images, allow only 'rot' or none
+            if (item.isTiled) {
+                const hHit = handleHitRadius;
+                const rotHandleX = item.x + item.width / 2;
+                const rotHandleY = item.y - handleSize * 1.5;
+                const dxRot = mousePos.x - rotHandleX;
+                const dyRot = mousePos.y - rotHandleY;
+                if (dxRot * dxRot + dyRot * dyRot <= (handleSize / 1.5 + hHit - handleSize / 2) * (handleSize / 1.5 + hHit - handleSize / 2)) return 'rot';
+                return null;
+            }
+
+            const hHit = handleHitRadius;
+            if (Math.abs(mousePos.x - item.x) < hHit && Math.abs(mousePos.y - item.y) < hHit) return 'tl';
+            if (Math.abs(mousePos.x - (item.x + item.width)) < hHit && Math.abs(mousePos.y - item.y) < hHit) return 'tr';
+            if (Math.abs(mousePos.x - item.x) < hHit && Math.abs(mousePos.y - (item.y + item.height)) < hHit) return 'bl';
+            if (Math.abs(mousePos.x - (item.x + item.width)) < hHit && Math.abs(mousePos.y - (item.y + item.height)) < hHit) return 'br';
+            const rotHandleX = item.x + item.width / 2;
+            const rotHandleY = item.y - handleSize * 1.5;
+            const dxRot = mousePos.x - rotHandleX;
+            const dyRot = mousePos.y - rotHandleY;
+            if (dxRot * dxRot + dyRot * dyRot <= (handleSize / 1.5 + hHit - handleSize / 2) * (handleSize / 1.5 + hHit - handleSize / 2)) return 'rot';
+            return null;
+        }
+        canvas.onmousedown = (e) => {
+            const mousePos = getMousePos(canvas, e);
+            const page = documentPages[currentPageIndex];
+            if (!page) return;
+            isDraggingFrame = false;
+            isResizingFrame = false;
+            isRotatingContent = false;
+            isPanningContent = false;
+            let newSelectedImage = null;
+            let clickedOnExistingSelectionHandle = false;
+            if (selectedImageOnCanvas) {
+                resizeHandle = getHandleAt(mousePos, selectedImageOnCanvas);
+                if (resizeHandle) {
+                    clickedOnExistingSelectionHandle = true;
+                    newSelectedImage = selectedImageOnCanvas;
+                    initialInteractionState = { item: selectedImageOnCanvas, handle: resizeHandle, originalX: selectedImageOnCanvas.x, originalY: selectedImageOnCanvas.y, originalWidth: selectedImageOnCanvas.width, originalHeight: selectedImageOnCanvas.height, originalRotation: selectedImageOnCanvas.rotation || 0, originalZoom: selectedImageOnCanvas.zoomLevel || 1.0, originalPanX: (selectedImageOnCanvas.panOffset && selectedImageOnCanvas.panOffset.x) || 0, originalPanY: (selectedImageOnCanvas.panOffset && selectedImageOnCanvas.panOffset.y) || 0, mouseDownPos: mousePos, itemCenterX: selectedImageOnCanvas.x + selectedImageOnCanvas.width / 2, itemCenterY: selectedImageOnCanvas.y + selectedImageOnCanvas.height / 2, };
+                    initialInteractionState.initialMouseAngleToCenter = Math.atan2(mousePos.y - initialInteractionState.itemCenterY, mousePos.x - initialInteractionState.itemCenterX);
+                    if (resizeHandle === 'rot') { isRotatingContent = true; } else { isResizingFrame = true; }
+                }
+            }
+            if (!isResizingFrame && !isRotatingContent) {
+                for (let i = page.images.length - 1; i >= 0; i--) {
+                    const item = page.images[i];
+                    if (isPointInRect(mousePos.x, mousePos.y, item.x, item.y, item.width, item.height)) {
+                        newSelectedImage = item;
+
+                        // FIX: Logic for Tiled Images (Locked Frame)
+                        if (item.isTiled) {
+                            // Default action is Panning Content, no frame dragging
+                            isPanningContent = true;
+                            initialInteractionState = {
+                                item: item,
+                                originalPanX: (item.panOffset && item.panOffset.x) || 0,
+                                originalPanY: (item.panOffset && item.panOffset.y) || 0,
+                                mouseDownPos: mousePos
+                            };
+                            // NOTE: dragOffsetX/Y not set because we are not dragging frame
+                        } else {
+                            // Standard behavior for normal images
+                            if (e.altKey || e.ctrlKey) {
+                                isPanningContent = true;
+                                initialInteractionState = { item: item, originalPanX: (item.panOffset && item.panOffset.x) || 0, originalPanY: (item.panOffset && item.panOffset.y) || 0, mouseDownPos: mousePos };
+                            } else {
+                                isDraggingFrame = true;
+                                dragOffsetX = mousePos.x - item.x;
+                                dragOffsetY = mousePos.y - item.y;
+                            }
+                            // Reorder logic (bring to front on click) - disable for tiled? Or keep?
+                            // Existing logic disables splice/push if currently selected is same...
+                            // If tiled, we probably shouldn't auto-bring-to-front either if we want strict grid?
+                            // But let's stick to just locking frame movement for now.
+                            if (selectedImageOnCanvas !== item && !isPanningContent && !item.isTiled) {
+                                page.images.splice(i, 1);
+                                page.images.push(item);
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+            if (newSelectedImage && newSelectedImage !== selectedImageOnCanvas) { selectedImageOnCanvas = newSelectedImage; } else if (!newSelectedImage && !clickedOnExistingSelectionHandle) { selectedImageOnCanvas = null; } updateImageEditControls(); drawCanvas();
+        };
         canvas.onmousemove = (e) => { const mousePos = getMousePos(canvas, e); let needsRedraw = false; let currentCursor = 'default'; if (isDraggingFrame && selectedImageOnCanvas) { needsRedraw = true; selectedImageOnCanvas.x = mousePos.x - dragOffsetX; selectedImageOnCanvas.y = mousePos.y - dragOffsetY; currentCursor = 'move'; } else if (isResizingFrame && selectedImageOnCanvas) { needsRedraw = true; const item = initialInteractionState.item; const { originalX, originalY, originalWidth, originalHeight, handle, mouseDownPos } = initialInteractionState; let newX = item.x, newY = item.y, newW = item.width, newH = item.height; const dx = mousePos.x - mouseDownPos.x; const dy = mousePos.y - mouseDownPos.y; if (handle === 'tl') { newX = originalX + dx; newY = originalY + dy; newW = originalWidth - dx; newH = originalHeight - dy; currentCursor = 'nwse-resize'; } else if (handle === 'tr') { newY = originalY + dy; newW = originalWidth + dx; newH = originalHeight - dy; currentCursor = 'nesw-resize'; } else if (handle === 'bl') { newX = originalX + dx; newW = originalWidth - dx; newH = originalHeight + dy; currentCursor = 'nesw-resize'; } else if (handle === 'br') { newW = originalWidth + dx; newH = originalHeight + dy; currentCursor = 'nwse-resize'; } if (e.shiftKey) { const aspect = originalWidth / originalHeight; if (handle.includes('l') || handle.includes('r')) { newH = newW / aspect; } else if (handle.includes('t') || handle.includes('b')) { newW = newH * aspect; } else { if (Math.abs(newW - originalWidth) > Math.abs(newH - originalHeight)) { newH = newW / aspect; } else { newW = newH * aspect; } } if (handle === 'tl') { if (newW !== originalWidth - dx) newX = originalX + originalWidth - newW; if (newH !== originalHeight - dy) newY = originalY + originalHeight - newH; } if (handle === 'tr') { if (newH !== originalHeight - dy) newY = originalY + originalHeight - newH; } } item.x = newX; item.y = newY; item.width = Math.max(handleSize * 2, newW); item.height = Math.max(handleSize * 2, newH); } else if (isRotatingContent && selectedImageOnCanvas) { needsRedraw = true; const item = initialInteractionState.item; const { itemCenterX, itemCenterY, originalRotation, initialMouseAngleToCenter } = initialInteractionState; const currentMouseAngleToCenter = Math.atan2(mousePos.y - itemCenterY, mousePos.x - itemCenterX); let angleDelta = currentMouseAngleToCenter - initialMouseAngleToCenter; let newRotation = originalRotation + (angleDelta * 180 / Math.PI); item.rotation = (newRotation % 360 + 360) % 360; updateImageEditControls(); currentCursor = 'alias'; } else if (isPanningContent && selectedImageOnCanvas) { needsRedraw = true; const item = initialInteractionState.item; const dx = mousePos.x - initialInteractionState.mouseDownPos.x; const dy = mousePos.y - initialInteractionState.mouseDownPos.y; item.panOffset.x = initialInteractionState.originalPanX + dx; item.panOffset.y = initialInteractionState.originalPanY + dy; currentCursor = 'grabbing'; } else { const page = documentPages[currentPageIndex]; if (page) { let foundHandle = false; for (let i = page.images.length - 1; i >= 0; i--) { const itemToCheck = (selectedImageOnCanvas && i === page.images.indexOf(selectedImageOnCanvas)) ? selectedImageOnCanvas : page.images[i]; if (!itemToCheck) continue; const handle = getHandleAt(mousePos, itemToCheck); if (handle) { if (handle === 'rot') currentCursor = 'alias'; else if (handle === 'tl' || handle === 'br') currentCursor = 'nwse-resize'; else if (handle === 'tr' || handle === 'bl') currentCursor = 'nesw-resize'; foundHandle = true; break; } if (isPointInRect(mousePos.x, mousePos.y, itemToCheck.x, itemToCheck.y, itemToCheck.width, itemToCheck.height)) { currentCursor = (e.altKey || e.ctrlKey) ? 'grab' : 'move'; foundHandle = true; break; } } } } canvas.style.cursor = currentCursor; if (needsRedraw) { drawCanvas(); } };
         canvas.onmouseup = () => { isDraggingFrame = false; isResizingFrame = false; isRotatingContent = false; isPanningContent = false; resizeHandle = null; initialInteractionState = {}; canvas.style.cursor = 'default'; };
         canvas.ondblclick = (e) => { const mousePos = getMousePos(canvas, e); let clickedOnItem = false; if (selectedImageOnCanvas) { if (isPointInRect(mousePos.x, mousePos.y, selectedImageOnCanvas.x, selectedImageOnCanvas.y, selectedImageOnCanvas.width, selectedImageOnCanvas.height)) { clickedOnItem = true; } } if (!clickedOnItem) { selectedImageOnCanvas = null; updateImageEditControls(); drawCanvas(); } };
