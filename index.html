@@ -678,17 +678,74 @@
                 targetCtx.rotate((item.rotation || 0) * Math.PI / 180);
 
                 const img = item.imgObj;
+
+                // Calculate Frame Dimensions (The "Window")
+                const F_w = itemFrameW;
+                const F_h = itemFrameH;
+
+                let drawW, drawH;
+                const imgAspect = img.width / img.height;
+                const frameAspect = F_w / F_h;
+
+                // Logic: Aspect Fill (Cover) - Ensure image covers the frame at zoom 1.0
+                if (imgAspect > frameAspect) {
+                    // Image is wider, match Height, Width will be larger
+                    drawH = F_h;
+                    drawW = drawH * imgAspect;
+                } else {
+                    // Image is taller, match Width, Height will be larger
+                    drawW = F_w;
+                    drawH = drawW / imgAspect;
+                }
+
+                // Apply Zoom
+                const effectiveZoom = item.zoomLevel || 1.0;
+                drawW *= effectiveZoom;
+                drawH *= effectiveZoom;
+
+                // Constraint Logic: Clamp Pan Offset
+                // Max offset allowed = (ImageSize - FrameSize) / 2
+                // This ensures the image edge never crosses the frame edge into "white space"
+                const maxPanX = Math.max(0, (drawW - F_w) / 2);
+                const maxPanY = Math.max(0, (drawH - F_h) / 2);
+
+                // We need to update the item's logical panOffset if it's out of bounds
+                // But we can't easily write back to 'item' inside draw loop without potential side effects or loop issues.
+                // However, for rendering, we strictly clamp.
+                // Ideally, we should update item.panOffset in onmousemove/onwheel.
+                // For now, let's clamp the *effective* translation used for drawing.
+
+                let panX = (item.panOffset && item.panOffset.x) ? item.panOffset.x * scaleFactor : 0;
+                let panY = (item.panOffset && item.panOffset.y) ? item.panOffset.y * scaleFactor : 0;
+
+                // Sync clamp back to item if it's the selected one (optional, but good for consistency)
+                // Actually, let's just clamp the drawing values.
+                panX = Math.max(-maxPanX, Math.min(maxPanX, panX));
+                panY = Math.max(-maxPanY, Math.min(maxPanY, panY));
+
                 if (item.isTiled) {
-                    const srcRect = calculateSourceRectForTiledItem(item);
+                    // For tiled items, we behave like a window.
+                    // The item.x/y/w/h define the FRAME (Window).
+                    // We draw the image CENTERED in that frame + Pan Offset.
+
                     targetCtx.drawImage(img,
-                        srcRect.sx, srcRect.sy, srcRect.sWidth, srcRect.sHeight,
-                        -itemFrameW / 2, -itemFrameH / 2,
-                        itemFrameW, itemFrameH);
-                } else { // 非平铺图片
+                        -drawW / 2 + panX, -drawH / 2 + panY,
+                        drawW, drawH
+                    );
+
+                    // NOTE: We do NOT use srcRect logic for tiled items anymore. 
+                    // We treat them exactly like zoomed/panned objects within a clip rect.
+                } else {
+                    // ... (Existing non-tiled logic, simplified or kept similar)
+                    // For non-tiled, we rely on the rotate logic block below (lines 688-741 in orig)
+                    // WAITING: To avoid re-implementing all that complex rotation logic here, 
+                    // I will strictly isolate this change to the `if (item.isTiled)` block and keep `else` pointing to original.
+                    // But wait, the original `else` block was huge.
+                    // Let's defer to the next tool step to verify I can keep the `else` block intact easily.
+                    // Actually, I am replacing the whole block. I must restore the non-tiled logic carefully.
+
                     const currentRotation = item.rotation || 0;
-                    const F_w = itemFrameW;
-                    const F_h = itemFrameH;
-                    let baseDrawW, baseDrawH; // Renamed for clarity: this is the unrotated content size for zoomLevel=1.0 to fill frame after rotation
+                    let baseDrawW, baseDrawH;
 
                     if (img.width <= 0 || img.height <= 0) {
                         baseDrawW = F_w; baseDrawH = F_h;
@@ -707,6 +764,7 @@
                                 baseDrawH = baseDrawW / imgAspect;
                             }
                         } else {
+                            // Rotation logic (simplified or preserved)
                             const angleRadInverse = -currentRotation * Math.PI / 180;
                             const cosA = Math.cos(angleRadInverse);
                             const sinA = Math.sin(angleRadInverse);
@@ -729,10 +787,7 @@
                         }
                     }
 
-                    // Directly use item.zoomLevel. The baseDrawW/H are calculated for "fill at zoom=1.0 when rotated".
-                    // User can zoom < 1.0 to see white space, or > 1.0 to zoom in further.
                     const effectiveContentZoom = item.zoomLevel || 1.0;
-
                     const finalDrawW = baseDrawW * effectiveContentZoom;
                     const finalDrawH = baseDrawH * effectiveContentZoom;
 
@@ -810,22 +865,14 @@
                         const imgAspect = imgToTile.width / imgToTile.height;
                         const cellAspect = cellWidth / cellHeight;
 
-                        // "Cover/Fill" logic: fill cell completely (cropping excess)
-                        // If image is wider than cell (relative to aspect), we must match Height (width will be larger)
-                        // If image is taller than cell, we must match Width (height will be larger)
-                        if (imgAspect > cellAspect) {
-                            newH = cellHeight;
-                            newW = newH * imgAspect;
-                        } else {
-                            newW = cellWidth;
-                            newH = newW / imgAspect;
-                        }
+                        // We set the ITEM size to the CELL size (Verification: Frame must be fixed)
+                        // The drawing logic in drawCanvas will handle the "Aspect Fill" (Cover) rendering.
 
-                        // Center image
-                        const itemX = marginLeftPx + c * (cellWidth + gapPx) + (cellWidth - newW) / 2;
-                        const itemY = marginTopPx + r * (cellHeight + gapPx) + (cellHeight - newH) / 2;
+                        const itemX = marginLeftPx + c * (cellWidth + gapPx);
+                        const itemY = marginTopPx + r * (cellHeight + gapPx);
 
-                        const newItem = createNewImageItemDefaults(imgToTile, itemX, itemY, newW, newH, true);
+                        // Pass cellWidth/Height, not calcW/H, ensuring stable grid
+                        const newItem = createNewImageItemDefaults(imgToTile, itemX, itemY, cellWidth, cellHeight, true);
                         newItem.sequenceNumber = imageSourceIndex + 1;
                         page.images.push(newItem);
                         imageSourceIndex++;
