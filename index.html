@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,14 +27,16 @@
             gap: 15px;
         }
 
-        .top-controls-area, .editor-main-area, .page-preview-area {
+        .top-controls-area,
+        .editor-main-area,
+        .page-preview-area {
             background-color: #fff;
             padding: 15px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             box-sizing: border-box;
         }
-        
+
         .editor-main-area {
             display: flex;
             gap: 15px;
@@ -55,16 +58,36 @@
             align-items: center;
             min-width: 300px;
         }
-        
+
         .controls-column {
-             border: 1px solid #e0e0e0; padding:10px; border-radius: 5px; margin-bottom:10px;
+            border: 1px solid #e0e0e0;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
         }
-        .controls-column h3 { margin-top:0; font-size: 1em; color: #333; border-bottom: 1px solid #eee; padding-bottom: 5px;}
+
+        .controls-column h3 {
+            margin-top: 0;
+            font-size: 1em;
+            color: #333;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
 
 
-        h2, h3 { margin-top: 0; color: #333; }
-        h2 { font-size: 1.4em; }
-        h3 { font-size: 1.1em; }
+        h2,
+        h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        h2 {
+            font-size: 1.4em;
+        }
+
+        h3 {
+            font-size: 1.1em;
+        }
 
         .control-group {
             margin-bottom: 12px;
@@ -73,18 +96,36 @@
             gap: 8px;
             align-items: center;
         }
-        .control-group label, .input-group label {
+
+        .control-group label,
+        .input-group label {
             margin-right: 5px;
             font-weight: bold;
             font-size: 0.9em;
             min-width: 70px;
         }
-        .input-group { display: flex; align-items: center; gap: 5px; margin-bottom: 5px;}
-        .input-group input[type="number"] { width: 60px; padding: 6px; font-size: 0.9em;}
-        .input-group span { font-size: 0.9em; }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 5px;
+        }
+
+        .input-group input[type="number"] {
+            width: 60px;
+            padding: 6px;
+            font-size: 0.9em;
+        }
+
+        .input-group span {
+            font-size: 0.9em;
+        }
 
 
-        button, input[type="file"], select {
+        button,
+        input[type="file"],
+        select {
             padding: 8px 12px;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -92,19 +133,43 @@
             font-size: 0.9em;
             background-color: #f9f9f9;
         }
-        button:hover { background-color: #e9e9e9; }
-        button:disabled { background-color: #e9ecef; color: #6c757d; cursor: not-allowed; }
-        button.primary { background-color: #007bff; color: white; border-color: #007bff;}
-        button.primary:hover { background-color: #0056b3; }
-        button.danger { background-color: #dc3545; color: white; border-color: #dc3545;}
-        button.danger:hover { background-color: #c82333; }
+
+        button:hover {
+            background-color: #e9e9e9;
+        }
+
+        button:disabled {
+            background-color: #e9ecef;
+            color: #6c757d;
+            cursor: not-allowed;
+        }
+
+        button.primary {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        button.primary:hover {
+            background-color: #0056b3;
+        }
+
+        button.danger {
+            background-color: #dc3545;
+            color: white;
+            border-color: #dc3545;
+        }
+
+        button.danger:hover {
+            background-color: #c82333;
+        }
 
 
         .image-gallery {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            min-height: 78px; 
+            min-height: 78px;
             max-height: 180px;
             overflow-y: auto;
             border: 1px solid #eee;
@@ -112,71 +177,84 @@
             background-color: #f9f9f9;
             border-radius: 4px;
         }
-        .gallery-item-container { 
-            width: 72px; 
+
+        .gallery-item-container {
+            width: 72px;
             height: 72px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            border: 1px solid #ddd; 
+            border: 1px solid #ddd;
             border-radius: 4px;
             overflow: hidden;
             text-align: center;
-            font-size: 0.75em; 
+            font-size: 0.75em;
             background-color: #fff;
-            position: relative; 
+            position: relative;
             cursor: pointer;
         }
-        .gallery-image { 
+
+        .gallery-image {
             max-width: 100%;
             max-height: 100%;
-            object-fit: cover; 
-            border: 2px solid transparent; 
-            display: block; 
+            object-fit: cover;
+            border: 2px solid transparent;
+            display: block;
         }
-        .gallery-item-container.selected .gallery-image, 
-        .gallery-item-container.selected { 
-            border-color: #007bff !important; 
-            box-shadow: 0 0 5px rgba(0,123,255,0.5);
+
+        .gallery-item-container.selected .gallery-image,
+        .gallery-item-container.selected {
+            border-color: #007bff !important;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
         }
-        .gallery-placeholder { 
+
+        .gallery-placeholder {
             color: #555;
             padding: 5px;
             box-sizing: border-box;
-            width:100%; height:100%; 
+            width: 100%;
+            height: 100%;
         }
+
         .gallery-placeholder.loading {
             background-color: #f0f0f0;
             animation: pulse 1.5s infinite ease-in-out;
         }
+
         .gallery-placeholder.error {
             background-color: #ffe0e0;
             color: #c00;
             border-color: #ffc0c0;
-            cursor: default; 
+            cursor: default;
         }
-        .gallery-item-filename, .gallery-item-errormsg {
+
+        .gallery-item-filename,
+        .gallery-item-errormsg {
             display: block;
             margin-top: 4px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            width: calc(100% - 4px); 
+            width: calc(100% - 4px);
             font-size: 0.9em;
         }
-         .gallery-item-seq { /* Style for sequence number in gallery */
+
+        .gallery-item-seq {
+            /* Style for sequence number in gallery */
             position: absolute;
             top: 1px;
             left: 1px;
-            background-color: rgba(0,0,0,0.6);
+            background-color: rgba(0, 0, 0, 0.6);
             color: white;
             font-size: 0.8em;
             padding: 0px 3px;
             border-radius: 3px;
-            z-index: 1; 
+            z-index: 1;
         }
-        .gallery-controls { /* Container for gallery move buttons */
+
+        .gallery-controls {
+            /* Container for gallery move buttons */
             margin-top: 8px;
             display: flex;
             gap: 10px;
@@ -185,94 +263,181 @@
 
 
         @keyframes pulse {
-            0% { opacity: 0.7; }
-            50% { opacity: 1; }
-            100% { opacity: 0.7; }
+            0% {
+                opacity: 0.7;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.7;
+            }
         }
 
 
         #editorCanvas {
-            border: 1px solid #000; background-color: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.15);
-            max-width: 100%; height: auto;
+            border: 1px solid #000;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+            max-width: 100%;
+            height: auto;
         }
 
         .image-edit-controls {
-            margin-top: 10px; padding: 10px; border: 1px dashed #ccc; border-radius: 4px;
-            display: flex; flex-direction: column; gap: 8px; width: 100%; max-width: 280px;
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px dashed #ccc;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+            max-width: 280px;
             box-sizing: border-box;
         }
-        .image-edit-controls label { display: block; margin-bottom: 2px; font-size: 0.85em; }
-        .image-edit-controls input[type="range"], .image-edit-controls input[type="number"] {
-            width: 100%; box-sizing: border-box;
+
+        .image-edit-controls label {
+            display: block;
+            margin-bottom: 2px;
+            font-size: 0.85em;
         }
-        .image-edit-controls button { width: 100%; }
-        
-        .page-preview-area h2 { margin-bottom: 10px; }
+
+        .image-edit-controls input[type="range"],
+        .image-edit-controls input[type="number"] {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .image-edit-controls button {
+            width: 100%;
+        }
+
+        .page-preview-area h2 {
+            margin-bottom: 10px;
+        }
+
         #pagePreviewContainer {
             display: flex;
-            flex-wrap: nowrap; 
+            flex-wrap: nowrap;
             gap: 10px;
             padding: 10px;
             border: 1px solid #ddd;
             background-color: #f9f9f9;
             min-height: 80px;
-            overflow-x: auto; 
+            overflow-x: auto;
             overflow-y: hidden;
         }
+
         .page-thumbnail {
             border: 2px solid #ccc;
             padding: 5px;
             cursor: pointer;
             background-color: white;
             text-align: center;
-            width: 100px; 
-            flex-shrink: 0; 
+            width: 100px;
+            flex-shrink: 0;
         }
+
         .page-thumbnail canvas {
-            width: 90px !important; 
-            height: auto !important; 
+            width: 90px !important;
+            height: auto !important;
             border: 1px solid #eee;
-            display: block; 
-            margin: 0 auto 5px auto; 
+            display: block;
+            margin: 0 auto 5px auto;
         }
-        .page-thumbnail.current-page-preview { border-color: #007bff; background-color: #e6f2ff; }
-        .page-thumbnail p { font-size: 0.8em; margin: 0; }
 
-        .page-navigation { margin-top: 10px; display:flex; align-items:center; gap: 10px; justify-content: center;}
-        .page-navigation span { font-weight: bold; }
+        .page-thumbnail.current-page-preview {
+            border-color: #007bff;
+            background-color: #e6f2ff;
+        }
 
-        @media (max-width: 992px) { 
+        .page-thumbnail p {
+            font-size: 0.8em;
+            margin: 0;
+        }
+
+        .page-navigation {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .page-navigation span {
+            font-weight: bold;
+        }
+
+        @media (max-width: 992px) {
             .editor-main-area {
                 flex-direction: column;
-                align-items: center; 
+                align-items: center;
             }
+
             .left-panel {
-                width: 100%; 
-                max-width: 600px; 
-                order: 1; 
+                width: 100%;
+                max-width: 600px;
+                order: 1;
             }
+
             .canvas-section {
                 width: 100%;
-                order: 2; 
+                order: 2;
             }
+
             .image-edit-controls {
-                 max-width: 100%; 
+                max-width: 100%;
             }
         }
+
         @media (max-width: 768px) {
-            body { padding: 10px; }
-            .control-group { flex-direction: column; align-items: stretch; }
-            .control-group button, .control-group input, .control-group select { width: 100%; }
-            .input-group { flex-direction: column; align-items: stretch; }
-            .input-group input[type="number"] { width: 100%; }
-            .gallery-item-container { width: 62px; height: 62px; font-size: 0.7em;} 
-            #pagePreviewContainer { min-height: 60px; }
-            .page-thumbnail { width: 80px; }
-            .page-thumbnail canvas { width: 70px !important; }
+            body {
+                padding: 10px;
+            }
+
+            .control-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .control-group button,
+            .control-group input,
+            .control-group select {
+                width: 100%;
+            }
+
+            .input-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .input-group input[type="number"] {
+                width: 100%;
+            }
+
+            .gallery-item-container {
+                width: 62px;
+                height: 62px;
+                font-size: 0.7em;
+            }
+
+            #pagePreviewContainer {
+                min-height: 60px;
+            }
+
+            .page-thumbnail {
+                width: 80px;
+            }
+
+            .page-thumbnail canvas {
+                width: 70px !important;
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="main-layout">
         <div class="top-controls-area">
@@ -287,13 +452,17 @@
                 <button id="downloadAllPagesBtn" class="primary">下载所有页 (PNGs)</button>
                 <button id="clearCurrentPageBtn" class="danger">清空当前页</button>
             </div>
-             <div class="controls-column">
+            <div class="controls-column">
                 <h3>页面边距 (mm)</h3>
                 <div class="control-group">
-                    <div class="input-group"><label for="marginTop">上:</label><input type="number" id="marginTop" value="10" min="0"><span>mm</span></div>
-                    <div class="input-group"><label for="marginRight">右:</label><input type="number" id="marginRight" value="10" min="0"><span>mm</span></div>
-                    <div class="input-group"><label for="marginBottom">下:</label><input type="number" id="marginBottom" value="10" min="0"><span>mm</span></div>
-                    <div class="input-group"><label for="marginLeft">左:</label><input type="number" id="marginLeft" value="10" min="0"><span>mm</span></div>
+                    <div class="input-group"><label for="marginTop">上:</label><input type="number" id="marginTop"
+                            value="10" min="0"><span>mm</span></div>
+                    <div class="input-group"><label for="marginRight">右:</label><input type="number" id="marginRight"
+                            value="10" min="0"><span>mm</span></div>
+                    <div class="input-group"><label for="marginBottom">下:</label><input type="number" id="marginBottom"
+                            value="10" min="0"><span>mm</span></div>
+                    <div class="input-group"><label for="marginLeft">左:</label><input type="number" id="marginLeft"
+                            value="10" min="0"><span>mm</span></div>
                 </div>
             </div>
         </div>
@@ -302,7 +471,8 @@
             <div class="left-panel">
                 <div class="controls-column">
                     <h3>图片库 (可用: <span id="uploadedImageCount">0</span> 张)</h3>
-                    <input type="file" id="imageUpload" accept="image/*" multiple style="margin-bottom:10px; width: 100%;">
+                    <input type="file" id="imageUpload" accept="image/*" multiple
+                        style="margin-bottom:10px; width: 100%;">
                     <div id="imageGallery" class="image-gallery">
                         <p>请先上传图片...</p>
                     </div>
@@ -324,14 +494,17 @@
                         <button id="nextPageBtn">下一页 &gt;</button>
                     </div>
                 </div>
-                
+
                 <div class="controls-column">
                     <h3>自动平铺 (所有可用图片)</h3>
-                    <div class="input-group"><label for="tileRows">行数:</label><input type="number" id="tileRows" value="2" min="1"></div>
-                    <div class="input-group"><label for="tileCols">列数:</label><input type="number" id="tileCols" value="2" min="1"></div>
-                    <div class="input-group"><label for="tileGap">间隙:</label><input type="number" id="tileGap" value="5" min="0"><span>mm</span></div>
+                    <div class="input-group"><label for="tileRows">行数:</label><input type="number" id="tileRows"
+                            value="2" min="1"></div>
+                    <div class="input-group"><label for="tileCols">列数:</label><input type="number" id="tileCols"
+                            value="2" min="1"></div>
+                    <div class="input-group"><label for="tileGap">间隙:</label><input type="number" id="tileGap" value="5"
+                            min="0"><span>mm</span></div>
                     <div class="control-group">
-                         <label for="clearBeforeTiling" style="font-weight:normal; min-width:auto;">
+                        <label for="clearBeforeTiling" style="font-weight:normal; min-width:auto;">
                             <input type="checkbox" id="clearBeforeTiling"> 平铺前清空起始页内容
                         </label>
                     </div>
@@ -344,26 +517,30 @@
                 <div id="imageEditControls" class="image-edit-controls" style="display: none;">
                     <h3>编辑选中图片</h3>
                     <button id="deleteImageBtn" class="danger">删除图片</button>
-                    <button id="bringToFrontBtn" >置于顶层</button>
-                    <button id="sendToBackBtn" >置于底层</button>
-                    
+                    <button id="bringToFrontBtn">置于顶层</button>
+                    <button id="sendToBackBtn">置于底层</button>
+
                     <div>
                         <label for="zoomRange">内容缩放: <span id="zoomValue">1.00</span>x</label>
                         <input type="range" id="zoomRange" min="0.1" max="10.0" step="0.05" value="1.0">
                     </div>
-                     <div>
+                    <div>
                         <label for="rotationRange">内容旋转: <span id="rotationValueDisplay">0</span>deg</label>
                         <input type="range" id="rotationRange" min="0" max="360" step="1" value="0">
                     </div>
 
-                    <div><label for="opacityRange">透明度: <span id="opacityValue">1</span></label><input type="range" id="opacityRange" min="0" max="1" step="0.05" value="1"></div>
-                    <div><label for="brightnessRange">亮度: <span id="brightnessValue">100</span>%</label><input type="range" id="brightnessRange" min="0" max="200" step="1" value="100"></div>
-                    <div><label for="contrastRange">对比度: <span id="contrastValue">100</span>%</label><input type="range" id="contrastRange" min="0" max="200" step="1" value="100"></div>
-                    <div><label for="saturateRange">饱和度: <span id="saturateValue">100</span>%</label><input type="range" id="saturateRange" min="0" max="200" step="1" value="100"></div>
+                    <div><label for="opacityRange">透明度: <span id="opacityValue">1</span></label><input type="range"
+                            id="opacityRange" min="0" max="1" step="0.05" value="1"></div>
+                    <div><label for="brightnessRange">亮度: <span id="brightnessValue">100</span>%</label><input
+                            type="range" id="brightnessRange" min="0" max="200" step="1" value="100"></div>
+                    <div><label for="contrastRange">对比度: <span id="contrastValue">100</span>%</label><input type="range"
+                            id="contrastRange" min="0" max="200" step="1" value="100"></div>
+                    <div><label for="saturateRange">饱和度: <span id="saturateValue">100</span>%</label><input type="range"
+                            id="saturateRange" min="0" max="200" step="1" value="100"></div>
                 </div>
             </div>
         </div>
-        
+
         <div class="page-preview-area">
             <h2>页面预览 (点击跳转)</h2>
             <div id="pagePreviewContainer">
@@ -372,11 +549,11 @@
     </div>
 
     <script>
-        const DPI = 96; 
+        const DPI = 96;
         const A4_WIDTH_MM = 210;
         const A4_HEIGHT_MM = 297;
-        const MIN_CONTENT_ZOOM = 0.1; 
-        const MAX_CONTENT_ZOOM = 10.0; 
+        const MIN_CONTENT_ZOOM = 0.1;
+        const MAX_CONTENT_ZOOM = 10.0;
 
         const canvas = document.getElementById('editorCanvas');
         const ctx = canvas.getContext('2d');
@@ -406,8 +583,8 @@
         const deleteImageBtn = document.getElementById('deleteImageBtn');
         const bringToFrontBtn = document.getElementById('bringToFrontBtn');
         const sendToBackBtn = document.getElementById('sendToBackBtn');
-        const zoomRange = document.getElementById('zoomRange'); 
-        const zoomValue = document.getElementById('zoomValue'); 
+        const zoomRange = document.getElementById('zoomRange');
+        const zoomValue = document.getElementById('zoomValue');
         const rotationRange = document.getElementById('rotationRange');
         const rotationValueDisplay = document.getElementById('rotationValueDisplay');
         const opacityRange = document.getElementById('opacityRange'); const opacityValue = document.getElementById('opacityValue');
@@ -416,24 +593,24 @@
         const saturateRange = document.getElementById('saturateRange'); const saturateValue = document.getElementById('saturateValue');
         const moveGalleryItemUpBtn = document.getElementById('moveGalleryItemUpBtn');
         const moveGalleryItemDownBtn = document.getElementById('moveGalleryItemDownBtn');
-        
+
         let canvasWidthPx, canvasHeightPx;
-        let editorReadyImages = []; 
-        let galleryFileItems = []; 
-        let selectedGalleryItemId = null; 
-        let documentPages = []; 
+        let editorReadyImages = [];
+        let galleryFileItems = [];
+        let selectedGalleryItemId = null;
+        let documentPages = [];
         let currentPageIndex = 0;
-        let selectedImageOnCanvas = null; 
-        let dragOffsetX, dragOffsetY; 
-        let contentDragOffsetX, contentDragOffsetY; 
-        let isDraggingFrame = false; 
-        let isResizingFrame = false; 
+        let selectedImageOnCanvas = null;
+        let dragOffsetX, dragOffsetY;
+        let contentDragOffsetX, contentDragOffsetY;
+        let isDraggingFrame = false;
+        let isResizingFrame = false;
         let isRotatingContent = false;
-        let isPanningContent = false; 
-        let resizeHandle = null; 
-        const handleSize = 10; 
-        const handleHitRadius = 6; 
-        let initialInteractionState = {}; 
+        let isPanningContent = false;
+        let resizeHandle = null;
+        const handleSize = 10;
+        const handleHitRadius = 6;
+        let initialInteractionState = {};
         let marginTopPx = 0, marginRightPx = 0, marginBottomPx = 0, marginLeftPx = 0;
 
         function mmToPx(mm) { return (mm / 25.4) * DPI; }
@@ -449,7 +626,7 @@
         function calculateSourceRectForTiledItem(item) { const img = item.imgObj; const cellW = item.width; const cellH = item.height; const zoom = item.zoomLevel || 1.0; const panX = item.panOffset.x || 0; const panY = item.panOffset.y || 0; let baseSWidth, baseSHeight; const imgAspect = img.width / img.height; const cellAspect = cellW / cellH; if (imgAspect > cellAspect) { baseSHeight = img.height; baseSWidth = baseSHeight * cellAspect; } else { baseSWidth = img.width; baseSHeight = baseSWidth / cellAspect; } let currentSWidth = baseSWidth / zoom; let currentSHeight = baseSHeight / zoom; let currentSX = (img.width - baseSWidth) / 2; let currentSY = (img.height - baseSHeight) / 2; currentSX += (baseSWidth - currentSWidth) / 2; currentSY += (baseSHeight - currentSHeight) / 2; currentSX += panX; currentSY += panY; currentSX = Math.max(0, Math.min(currentSX, img.width - currentSWidth)); currentSY = Math.max(0, Math.min(currentSY, img.height - currentSHeight)); if (currentSX + currentSWidth > img.width) currentSWidth = img.width - currentSX; if (currentSY + currentSHeight > img.height) currentSHeight = img.height - currentSY; currentSWidth = Math.max(1, currentSWidth); currentSHeight = Math.max(1, currentSHeight); return { sx: currentSX, sy: currentSY, sWidth: currentSWidth, sHeight: currentSHeight }; }
 
         function drawCanvas(targetCtx = ctx, targetCanvas = canvas, isPreview = false, pageToDrawIndex = currentPageIndex, showSequenceNumbers = true) {
-            const page = documentPages[pageToDrawIndex]; 
+            const page = documentPages[pageToDrawIndex];
             if (!page) { targetCtx.clearRect(0, 0, targetCanvas.width, targetCanvas.height); targetCtx.fillStyle = 'white'; targetCtx.fillRect(0, 0, targetCanvas.width, targetCanvas.height); return; }
 
             targetCtx.clearRect(0, 0, targetCanvas.width, targetCanvas.height);
@@ -457,7 +634,7 @@
             targetCtx.fillRect(0, 0, targetCanvas.width, targetCanvas.height);
 
             if (!isPreview) { targetCtx.strokeStyle = '#cccccc'; targetCtx.lineWidth = 1; targetCtx.strokeRect(marginLeftPx, marginTopPx, targetCanvas.width - marginLeftPx - marginRightPx, targetCanvas.height - marginTopPx - marginBottomPx); }
-            
+
             const scaleFactor = isPreview ? (targetCanvas.width / canvasWidthPx) : 1;
 
             page.images.forEach(item => {
@@ -466,7 +643,7 @@
                 const itemFrameW = item.width * scaleFactor;
                 const itemFrameH = item.height * scaleFactor;
 
-                targetCtx.save(); 
+                targetCtx.save();
 
                 let filterString = '';
                 if (item.filters) { filterString += `brightness(${item.filters.brightness || 100}%) contrast(${item.filters.contrast || 100}%) saturate(${item.filters.saturate || 100}%) `; }
@@ -480,8 +657,8 @@
                 const frameCenterX = itemFrameX + itemFrameW / 2;
                 const frameCenterY = itemFrameY + itemFrameH / 2;
                 targetCtx.translate(frameCenterX, frameCenterY);
-                
-                if(item.panOffset && (item.panOffset.x !== 0 || item.panOffset.y !== 0)) {
+
+                if (item.panOffset && (item.panOffset.x !== 0 || item.panOffset.y !== 0)) {
                     targetCtx.translate(item.panOffset.x * scaleFactor, item.panOffset.y * scaleFactor);
                 }
                 targetCtx.rotate((item.rotation || 0) * Math.PI / 180);
@@ -490,23 +667,23 @@
                 if (item.isTiled) {
                     const srcRect = calculateSourceRectForTiledItem(item);
                     targetCtx.drawImage(img,
-                                        srcRect.sx, srcRect.sy, srcRect.sWidth, srcRect.sHeight,
-                                        -itemFrameW / 2, -itemFrameH / 2, 
-                                        itemFrameW, itemFrameH);       
+                        srcRect.sx, srcRect.sy, srcRect.sWidth, srcRect.sHeight,
+                        -itemFrameW / 2, -itemFrameH / 2,
+                        itemFrameW, itemFrameH);
                 } else { // 非平铺图片
                     const currentRotation = item.rotation || 0;
-                    const F_w = itemFrameW; 
+                    const F_w = itemFrameW;
                     const F_h = itemFrameH;
                     let baseDrawW, baseDrawH; // Renamed for clarity: this is the unrotated content size for zoomLevel=1.0 to fill frame after rotation
 
-                    if (img.width <= 0 || img.height <= 0) { 
+                    if (img.width <= 0 || img.height <= 0) {
                         baseDrawW = F_w; baseDrawH = F_h;
                     } else {
                         const imgW_orig = img.width;
                         const imgH_orig = img.height;
                         const imgAspect = imgW_orig / imgH_orig;
 
-                        if (currentRotation % 360 === 0) { 
+                        if (currentRotation % 360 === 0) {
                             const frameAspect = F_w / F_h;
                             if (imgAspect > frameAspect) {
                                 baseDrawH = F_h;
@@ -515,12 +692,12 @@
                                 baseDrawW = F_w;
                                 baseDrawH = baseDrawW / imgAspect;
                             }
-                        } else { 
-                            const angleRadInverse = -currentRotation * Math.PI / 180; 
+                        } else {
+                            const angleRadInverse = -currentRotation * Math.PI / 180;
                             const cosA = Math.cos(angleRadInverse);
                             const sinA = Math.sin(angleRadInverse);
                             const halfFw = F_w / 2; const halfFh = F_h / 2;
-                            const frameCorners = [ { x: -halfFw, y: -halfFh }, { x: halfFw, y: -halfFh }, { x:  halfFw, y:  halfFh }, { x: -halfFw, y: halfFh } ];
+                            const frameCorners = [{ x: -halfFw, y: -halfFh }, { x: halfFw, y: -halfFh }, { x: halfFw, y: halfFh }, { x: -halfFw, y: halfFh }];
                             let minRotX = Infinity, maxRotX = -Infinity, minRotY = Infinity, maxRotY = -Infinity;
                             frameCorners.forEach(p => { const rotX = p.x * cosA - p.y * sinA; const rotY = p.x * sinA + p.y * cosA; minRotX = Math.min(minRotX, rotX); maxRotX = Math.max(maxRotX, rotX); minRotY = Math.min(minRotY, rotY); maxRotY = Math.max(maxRotY, rotY); });
                             const requiredWidthInImageSpace = maxRotX - minRotX;
@@ -530,48 +707,115 @@
                             const baseScaleFactor = Math.max(scaleToCoverWidth, scaleToCoverHeight);
                             baseDrawW = imgW_orig * baseScaleFactor;
                             baseDrawH = imgH_orig * baseScaleFactor;
-                            if (!isFinite(baseDrawW) || baseDrawW <= 0 || !isFinite(baseDrawH) || baseDrawH <= 0) { 
+                            if (!isFinite(baseDrawW) || baseDrawW <= 0 || !isFinite(baseDrawH) || baseDrawH <= 0) {
                                 const frameAspect = F_w / F_h;
-                                if (imgAspect > frameAspect) { baseDrawH = F_h; baseDrawW = baseDrawH * imgAspect;}
-                                else { baseDrawW = F_w; baseDrawH = baseDrawW / imgAspect;}
+                                if (imgAspect > frameAspect) { baseDrawH = F_h; baseDrawW = baseDrawH * imgAspect; }
+                                else { baseDrawW = F_w; baseDrawH = baseDrawW / imgAspect; }
                             }
                         }
                     }
-                    
+
                     // Directly use item.zoomLevel. The baseDrawW/H are calculated for "fill at zoom=1.0 when rotated".
                     // User can zoom < 1.0 to see white space, or > 1.0 to zoom in further.
-                    const effectiveContentZoom = item.zoomLevel || 1.0; 
+                    const effectiveContentZoom = item.zoomLevel || 1.0;
 
                     const finalDrawW = baseDrawW * effectiveContentZoom;
                     const finalDrawH = baseDrawH * effectiveContentZoom;
 
                     targetCtx.drawImage(img, 0, 0, img.width, img.height,
-                                        -finalDrawW / 2, -finalDrawH / 2, finalDrawW, finalDrawH);
+                        -finalDrawW / 2, -finalDrawH / 2, finalDrawW, finalDrawH);
                 }
-                targetCtx.restore(); 
-                
+                targetCtx.restore();
+
                 if (showSequenceNumbers && item.isTiled && typeof item.sequenceNumber === 'number' && !isPreview) { targetCtx.save(); const fontSizeBase = 14; const finalFontSize = fontSizeBase; targetCtx.font = `bold ${finalFontSize}px Arial`; targetCtx.textAlign = 'left'; targetCtx.textBaseline = 'top'; const textContent = String(item.sequenceNumber); const textMetrics = targetCtx.measureText(textContent); const textPadding = 2; const bgWidth = textMetrics.width + 2 * textPadding; const bgHeight = finalFontSize + 2 * textPadding; const textBgX = itemFrameX + textPadding; const textBgY = itemFrameY + textPadding; targetCtx.fillStyle = 'rgba(0, 0, 0, 0.5)'; targetCtx.fillRect(textBgX, textBgY, bgWidth, bgHeight); targetCtx.fillStyle = 'white'; targetCtx.fillText(textContent, textBgX + textPadding, textBgY + textPadding); targetCtx.restore(); }
-            }); 
+            });
 
             if (selectedImageOnCanvas && !isPreview && pageToDrawIndex === currentPageIndex) { const item = selectedImageOnCanvas; const selX = item.x * scaleFactor; const selY = item.y * scaleFactor; const selW = item.width * scaleFactor; const selH = item.height * scaleFactor; targetCtx.save(); targetCtx.strokeStyle = '#007bff'; targetCtx.lineWidth = 1; targetCtx.strokeRect(selX, selY, selW, selH); targetCtx.fillStyle = '#007bff'; const visHandleSize = handleSize; targetCtx.fillRect(selX - visHandleSize / 2, selY - visHandleSize / 2, visHandleSize, visHandleSize); targetCtx.fillRect(selX + selW - visHandleSize / 2, selY - visHandleSize / 2, visHandleSize, visHandleSize); targetCtx.fillRect(selX - visHandleSize / 2, selY + selH - visHandleSize / 2, visHandleSize, visHandleSize); targetCtx.fillRect(selX + selW - visHandleSize / 2, selY + selH - visHandleSize / 2, visHandleSize, visHandleSize); const rotHandleX = selX + selW / 2; const rotHandleY = selY - visHandleSize * 1.5; targetCtx.beginPath(); targetCtx.arc(rotHandleX, rotHandleY, visHandleSize / 1.5, 0, 2 * Math.PI); targetCtx.fill(); targetCtx.restore(); }
         }
 
         // ... (Rest of the JavaScript, identical to the version from "画框内旋转版")
         function renderPagePreviews() { pagePreviewContainer.innerHTML = ''; const previewWidthForCanvasResolution = 180; const previewDisplayWidth = 90; documentPages.forEach((pageData, index) => { const thumbContainer = document.createElement('div'); thumbContainer.classList.add('page-thumbnail'); if (index === currentPageIndex) { thumbContainer.classList.add('current-page-preview'); } const thumbCanvas = document.createElement('canvas'); const thumbCtx = thumbCanvas.getContext('2d'); const mainCanvasAspectRatio = canvasWidthPx / canvasHeightPx; thumbCanvas.width = previewWidthForCanvasResolution; thumbCanvas.height = previewWidthForCanvasResolution / mainCanvasAspectRatio; thumbCanvas.style.width = previewDisplayWidth + 'px'; thumbCanvas.style.height = (previewDisplayWidth / mainCanvasAspectRatio) + 'px'; drawCanvas(thumbCtx, thumbCanvas, true, index, true); const pageNumP = document.createElement('p'); pageNumP.textContent = `第 ${index + 1} 页`; thumbContainer.appendChild(thumbCanvas); thumbContainer.appendChild(pageNumP); thumbContainer.onclick = () => navigateToPage(index, true); pagePreviewContainer.appendChild(thumbContainer); }); }
-        function updateGalleryDisplay() { imageGallery.innerHTML = ''; uploadedImageCountSpan.textContent = editorReadyImages.length; updateMoveButtonsState(); if (galleryFileItems.length === 0) { imageGallery.innerHTML = '<p>请先上传图片...</p>'; return; } galleryFileItems.forEach((item, index) => { const itemDiv = document.createElement('div'); itemDiv.classList.add('gallery-item-container'); itemDiv.dataset.id = item.id; if (item.id === selectedGalleryItemId) { itemDiv.classList.add('selected'); } const seqNumSpan = document.createElement('span'); seqNumSpan.classList.add('gallery-item-seq'); seqNumSpan.textContent = `#${index + 1}`; itemDiv.appendChild(seqNumSpan); if (item.status === 'loaded' && item.dataSrc) { const imgEl = document.createElement('img'); imgEl.src = item.dataSrc; imgEl.classList.add('gallery-image'); itemDiv.appendChild(imgEl); } else if (item.status === 'loading' || item.status === 'pending') { itemDiv.classList.add('gallery-placeholder', 'loading'); itemDiv.textContent = '加载中'; const fileNameSpan = document.createElement('span'); fileNameSpan.classList.add('gallery-item-filename'); fileNameSpan.textContent = item.fileName.length > 10 ? item.fileName.substring(0,7) + '...' : item.fileName; itemDiv.appendChild(fileNameSpan); } else if (item.status === 'error') { itemDiv.classList.add('gallery-placeholder', 'error'); itemDiv.textContent = `错误`; const errorMsgSpan = document.createElement('span'); errorMsgSpan.classList.add('gallery-item-errormsg'); errorMsgSpan.textContent = item.errorMsg || '加载失败'; itemDiv.appendChild(errorMsgSpan); } itemDiv.onclick = () => { if (item.status === 'loaded') { selectedGalleryItemId = item.id; } else if (item.status === 'error') { selectedGalleryItemId = null; alert(`图片 "${item.fileName}" 加载失败: ${item.errorMsg || '未知错误'}`); } else { selectedGalleryItemId = null; } updateGalleryDisplay(); }; imageGallery.appendChild(itemDiv); }); }
-        imageUpload.onchange = (event) => { const files = event.target.files; if (files.length === 0) return; const newItemsToProcess = []; for (const file of files) { const itemId = `item_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`; const galleryItem = { id: itemId, fileName: file.name, status: 'pending', dataSrc: null, imageObject: null, errorMsg: null }; galleryFileItems.push(galleryItem); newItemsToProcess.push({file, galleryItemRef: galleryItem}); } updateGalleryDisplay(); newItemsToProcess.forEach(({file, galleryItemRef}) => { galleryItemRef.status = 'loading'; updateGalleryDisplay(); const reader = new FileReader(); reader.onload = (e_reader) => { const originalImage = new Image(); originalImage.onload = () => { galleryItemRef.status = 'loaded'; galleryItemRef.dataSrc = e_reader.target.result; galleryItemRef.imageObject = originalImage; editorReadyImages.push({ id: galleryItemRef.id, src: galleryItemRef.dataSrc, originalImage: galleryItemRef.imageObject }); if (!selectedGalleryItemId && editorReadyImages.length > 0) { selectedGalleryItemId = editorReadyImages[0].id; } updateGalleryDisplay(); }; originalImage.onerror = () => { galleryItemRef.status = 'error'; galleryItemRef.errorMsg = '无法解码图片'; console.error("Error decoding image:", galleryItemRef.fileName); updateGalleryDisplay(); }; originalImage.src = e_reader.target.result; }; reader.onerror = () => { galleryItemRef.status = 'error'; galleryItemRef.errorMsg = '读取文件失败'; console.error("Error reading file:", galleryItemRef.fileName); updateGalleryDisplay(); }; reader.readAsDataURL(file); }); imageUpload.value = ""; };
-        applyTilingBtn.onclick = () => { const rows = parseInt(tileRowsInput.value) || 1; const cols = parseInt(tileColsInput.value) || 1; const gapMm = parseFloat(tileGapInput.value) || 0; const gapPx = mmToPx(gapMm); if (editorReadyImages.length === 0) { alert('图片库中没有可用于平铺的图片！'); return; } const initialPageIndexForTiling = currentPageIndex; let currentProcessingPageIndex = initialPageIndexForTiling; if (clearBeforeTilingCheckbox.checked) { if (documentPages[currentProcessingPageIndex]) { documentPages[currentProcessingPageIndex].images = []; if (currentPageIndex === currentProcessingPageIndex) { selectedImageOnCanvas = null; updateImageEditControls(); } } } let imageSourceIndex = 0; const totalImagesToTile = editorReadyImages.length; while (imageSourceIndex < totalImagesToTile) { if (currentProcessingPageIndex >= documentPages.length) { documentPages.push(createNewPage()); } let page = documentPages[currentProcessingPageIndex]; if (!page) { console.error("Error: Page object not found for index", currentProcessingPageIndex); break; } const availableWidth = canvas.width - marginLeftPx - marginRightPx - (cols - 1) * gapPx; const availableHeight = canvas.height - marginTopPx - marginBottomPx - (rows - 1) * gapPx; if (availableWidth <= 0 || availableHeight <= 0) { alert(`页面 ${currentProcessingPageIndex + 1} 的可绘制区域不足。`); break; } const cellWidth = Math.max(1, availableWidth / cols); const cellHeight = Math.max(1, availableHeight / rows); for (let r = 0; r < rows && imageSourceIndex < totalImagesToTile; r++) { for (let c = 0; c < cols && imageSourceIndex < totalImagesToTile; c++) { const imgDataFromGallery = editorReadyImages[imageSourceIndex]; if (!imgDataFromGallery || !imgDataFromGallery.originalImage) { console.error("Missing image data for tiling source:", imageSourceIndex); imageSourceIndex++; continue; } const imgToTile = imgDataFromGallery.originalImage; const itemX = marginLeftPx + c * (cellWidth + gapPx); const itemY = marginTopPx + r * (cellHeight + gapPx); const newItem = createNewImageItemDefaults(imgToTile, itemX, itemY, cellWidth, cellHeight, true); newItem.sequenceNumber = imageSourceIndex + 1; page.images.push(newItem); imageSourceIndex++; } } if (imageSourceIndex < totalImagesToTile) { currentProcessingPageIndex++; } } navigateToPage(initialPageIndexForTiling, true); };
+        function updateGalleryDisplay() { imageGallery.innerHTML = ''; uploadedImageCountSpan.textContent = editorReadyImages.length; updateMoveButtonsState(); if (galleryFileItems.length === 0) { imageGallery.innerHTML = '<p>请先上传图片...</p>'; return; } galleryFileItems.forEach((item, index) => { const itemDiv = document.createElement('div'); itemDiv.classList.add('gallery-item-container'); itemDiv.dataset.id = item.id; if (item.id === selectedGalleryItemId) { itemDiv.classList.add('selected'); } const seqNumSpan = document.createElement('span'); seqNumSpan.classList.add('gallery-item-seq'); seqNumSpan.textContent = `#${index + 1}`; itemDiv.appendChild(seqNumSpan); if (item.status === 'loaded' && item.dataSrc) { const imgEl = document.createElement('img'); imgEl.src = item.dataSrc; imgEl.classList.add('gallery-image'); itemDiv.appendChild(imgEl); } else if (item.status === 'loading' || item.status === 'pending') { itemDiv.classList.add('gallery-placeholder', 'loading'); itemDiv.textContent = '加载中'; const fileNameSpan = document.createElement('span'); fileNameSpan.classList.add('gallery-item-filename'); fileNameSpan.textContent = item.fileName.length > 10 ? item.fileName.substring(0, 7) + '...' : item.fileName; itemDiv.appendChild(fileNameSpan); } else if (item.status === 'error') { itemDiv.classList.add('gallery-placeholder', 'error'); itemDiv.textContent = `错误`; const errorMsgSpan = document.createElement('span'); errorMsgSpan.classList.add('gallery-item-errormsg'); errorMsgSpan.textContent = item.errorMsg || '加载失败'; itemDiv.appendChild(errorMsgSpan); } itemDiv.onclick = () => { if (item.status === 'loaded') { selectedGalleryItemId = item.id; } else if (item.status === 'error') { selectedGalleryItemId = null; alert(`图片 "${item.fileName}" 加载失败: ${item.errorMsg || '未知错误'}`); } else { selectedGalleryItemId = null; } updateGalleryDisplay(); }; imageGallery.appendChild(itemDiv); }); }
+        imageUpload.onchange = (event) => { const files = event.target.files; if (files.length === 0) return; const newItemsToProcess = []; for (const file of files) { const itemId = `item_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`; const galleryItem = { id: itemId, fileName: file.name, status: 'pending', dataSrc: null, imageObject: null, errorMsg: null }; galleryFileItems.push(galleryItem); newItemsToProcess.push({ file, galleryItemRef: galleryItem }); } updateGalleryDisplay(); newItemsToProcess.forEach(({ file, galleryItemRef }) => { galleryItemRef.status = 'loading'; updateGalleryDisplay(); const reader = new FileReader(); reader.onload = (e_reader) => { const originalImage = new Image(); originalImage.onload = () => { galleryItemRef.status = 'loaded'; galleryItemRef.dataSrc = e_reader.target.result; galleryItemRef.imageObject = originalImage; editorReadyImages.push({ id: galleryItemRef.id, src: galleryItemRef.dataSrc, originalImage: galleryItemRef.imageObject }); if (!selectedGalleryItemId && editorReadyImages.length > 0) { selectedGalleryItemId = editorReadyImages[0].id; } updateGalleryDisplay(); }; originalImage.onerror = () => { galleryItemRef.status = 'error'; galleryItemRef.errorMsg = '无法解码图片'; console.error("Error decoding image:", galleryItemRef.fileName); updateGalleryDisplay(); }; originalImage.src = e_reader.target.result; }; reader.onerror = () => { galleryItemRef.status = 'error'; galleryItemRef.errorMsg = '读取文件失败'; console.error("Error reading file:", galleryItemRef.fileName); updateGalleryDisplay(); }; reader.readAsDataURL(file); }); imageUpload.value = ""; };
+        applyTilingBtn.onclick = () => {
+            const rows = parseInt(tileRowsInput.value) || 1;
+            const cols = parseInt(tileColsInput.value) || 1;
+            const gapMm = parseFloat(tileGapInput.value) || 0;
+            const gapPx = mmToPx(gapMm);
+
+            // FIX: Use galleryFileItems to ensure tiling order matches the UI visual order
+            // (editorReadyImages might be out of order due to async loading speeds)
+            const imagesToTile = galleryFileItems
+                .filter(item => item.status === 'loaded' && item.imageObject)
+                .map(item => ({ originalImage: item.imageObject }));
+
+            if (imagesToTile.length === 0) {
+                alert('图片库中没有可用于平铺的图片！');
+                return;
+            }
+
+            const initialPageIndexForTiling = currentPageIndex;
+            let currentProcessingPageIndex = initialPageIndexForTiling;
+
+            if (clearBeforeTilingCheckbox.checked) {
+                if (documentPages[currentProcessingPageIndex]) {
+                    documentPages[currentProcessingPageIndex].images = [];
+                    if (currentPageIndex === currentProcessingPageIndex) {
+                        selectedImageOnCanvas = null;
+                        updateImageEditControls();
+                    }
+                }
+            }
+
+            let imageSourceIndex = 0;
+            const totalImagesToTile = imagesToTile.length;
+
+            while (imageSourceIndex < totalImagesToTile) {
+                if (currentProcessingPageIndex >= documentPages.length) {
+                    documentPages.push(createNewPage());
+                }
+                let page = documentPages[currentProcessingPageIndex];
+                if (!page) { console.error("Error: Page object not found for index", currentProcessingPageIndex); break; }
+
+                const availableWidth = canvas.width - marginLeftPx - marginRightPx - (cols - 1) * gapPx;
+                const availableHeight = canvas.height - marginTopPx - marginBottomPx - (rows - 1) * gapPx;
+
+                if (availableWidth <= 0 || availableHeight <= 0) { alert(`页面 ${currentProcessingPageIndex + 1} 的可绘制区域不足。`); break; }
+
+                const cellWidth = Math.max(1, availableWidth / cols);
+                const cellHeight = Math.max(1, availableHeight / rows);
+
+                for (let r = 0; r < rows && imageSourceIndex < totalImagesToTile; r++) {
+                    for (let c = 0; c < cols && imageSourceIndex < totalImagesToTile; c++) {
+                        const imgDataFromGallery = imagesToTile[imageSourceIndex];
+
+                        const imgToTile = imgDataFromGallery.originalImage;
+                        const itemX = marginLeftPx + c * (cellWidth + gapPx);
+                        const itemY = marginTopPx + r * (cellHeight + gapPx);
+
+                        const newItem = createNewImageItemDefaults(imgToTile, itemX, itemY, cellWidth, cellHeight, true);
+                        newItem.sequenceNumber = imageSourceIndex + 1;
+                        page.images.push(newItem);
+                        imageSourceIndex++;
+                    }
+                }
+                if (imageSourceIndex < totalImagesToTile) {
+                    currentProcessingPageIndex++;
+                }
+            }
+            navigateToPage(initialPageIndexForTiling, true);
+        };
         function getMousePos(cvs, evt) { const rect = cvs.getBoundingClientRect(); const scaleX = cvs.width / rect.width; const scaleY = cvs.height / rect.height; return { x: (evt.clientX - rect.left) * scaleX, y: (evt.clientY - rect.top) * scaleY }; }
         function isPointInRect(px, py, rx, ry, rw, rh) { return px >= rx && px <= rx + rw && py >= ry && py <= ry + rh; }
-        function getHandleAt(mousePos, item) { const hHit = handleHitRadius; if (Math.abs(mousePos.x - item.x) < hHit && Math.abs(mousePos.y - item.y) < hHit) return 'tl'; if (Math.abs(mousePos.x - (item.x + item.width)) < hHit && Math.abs(mousePos.y - item.y) < hHit) return 'tr'; if (Math.abs(mousePos.x - item.x) < hHit && Math.abs(mousePos.y - (item.y + item.height)) < hHit) return 'bl'; if (Math.abs(mousePos.x - (item.x + item.width)) < hHit && Math.abs(mousePos.y - (item.y + item.height)) < hHit) return 'br'; const rotHandleX = item.x + item.width / 2; const rotHandleY = item.y - handleSize * 1.5; const dxRot = mousePos.x - rotHandleX; const dyRot = mousePos.y - rotHandleY; if (dxRot * dxRot + dyRot * dyRot <= (handleSize / 1.5 + hHit - handleSize/2) * (handleSize / 1.5 + hHit - handleSize/2) ) return 'rot'; return null; }
-        canvas.onmousedown = (e) => { const mousePos = getMousePos(canvas, e); const page = documentPages[currentPageIndex]; if (!page) return; isDraggingFrame = false; isResizingFrame = false; isRotatingContent = false; isPanningContent = false; let newSelectedImage = null; let clickedOnExistingSelectionHandle = false; if (selectedImageOnCanvas) { resizeHandle = getHandleAt(mousePos, selectedImageOnCanvas); if (resizeHandle) { clickedOnExistingSelectionHandle = true; newSelectedImage = selectedImageOnCanvas; initialInteractionState = { item: selectedImageOnCanvas, handle: resizeHandle, originalX: selectedImageOnCanvas.x, originalY: selectedImageOnCanvas.y, originalWidth: selectedImageOnCanvas.width, originalHeight: selectedImageOnCanvas.height, originalRotation: selectedImageOnCanvas.rotation || 0, originalZoom: selectedImageOnCanvas.zoomLevel || 1.0, originalPanX: (selectedImageOnCanvas.panOffset && selectedImageOnCanvas.panOffset.x) || 0, originalPanY: (selectedImageOnCanvas.panOffset && selectedImageOnCanvas.panOffset.y) || 0, mouseDownPos: mousePos, itemCenterX: selectedImageOnCanvas.x + selectedImageOnCanvas.width / 2, itemCenterY: selectedImageOnCanvas.y + selectedImageOnCanvas.height / 2, }; initialInteractionState.initialMouseAngleToCenter = Math.atan2( mousePos.y - initialInteractionState.itemCenterY, mousePos.x - initialInteractionState.itemCenterX ); if (resizeHandle === 'rot') { isRotatingContent = true; } else { isResizingFrame = true; } } } if (!isResizingFrame && !isRotatingContent) { for (let i = page.images.length - 1; i >= 0; i--) { const item = page.images[i]; if (isPointInRect(mousePos.x, mousePos.y, item.x, item.y, item.width, item.height)) { newSelectedImage = item; if (e.altKey || e.ctrlKey) { isPanningContent = true; initialInteractionState = { item: item, originalPanX: (item.panOffset && item.panOffset.x) || 0, originalPanY: (item.panOffset && item.panOffset.y) || 0, mouseDownPos: mousePos }; } else { isDraggingFrame = true; dragOffsetX = mousePos.x - item.x; dragOffsetY = mousePos.y - item.y; } if (selectedImageOnCanvas !== item && !isPanningContent && !item.isTiled) { page.images.splice(i, 1); page.images.push(item); } break; } } } if (newSelectedImage && newSelectedImage !== selectedImageOnCanvas) { selectedImageOnCanvas = newSelectedImage; } else if (!newSelectedImage && !clickedOnExistingSelectionHandle) { selectedImageOnCanvas = null; } updateImageEditControls(); drawCanvas(); };
-        canvas.onmousemove = (e) => { const mousePos = getMousePos(canvas, e); let needsRedraw = false; let currentCursor = 'default'; if (isDraggingFrame && selectedImageOnCanvas) { needsRedraw = true; selectedImageOnCanvas.x = mousePos.x - dragOffsetX; selectedImageOnCanvas.y = mousePos.y - dragOffsetY; currentCursor = 'move'; } else if (isResizingFrame && selectedImageOnCanvas) { needsRedraw = true; const item = initialInteractionState.item; const { originalX, originalY, originalWidth, originalHeight, handle, mouseDownPos } = initialInteractionState; let newX = item.x, newY = item.y, newW = item.width, newH = item.height; const dx = mousePos.x - mouseDownPos.x; const dy = mousePos.y - mouseDownPos.y; if (handle === 'tl') { newX = originalX + dx; newY = originalY + dy; newW = originalWidth - dx; newH = originalHeight - dy; currentCursor = 'nwse-resize';} else if (handle === 'tr') { newY = originalY + dy; newW = originalWidth + dx; newH = originalHeight - dy; currentCursor = 'nesw-resize';} else if (handle === 'bl') { newX = originalX + dx; newW = originalWidth - dx; newH = originalHeight + dy; currentCursor = 'nesw-resize';} else if (handle === 'br') { newW = originalWidth + dx; newH = originalHeight + dy; currentCursor = 'nwse-resize';} if (e.shiftKey) { const aspect = originalWidth / originalHeight; if (handle.includes('l') || handle.includes('r')) { newH = newW / aspect; } else if (handle.includes('t') || handle.includes('b')) { newW = newH * aspect; } else { if (Math.abs(newW - originalWidth) > Math.abs(newH - originalHeight)) { newH = newW / aspect; } else { newW = newH * aspect; } } if (handle === 'tl') { if (newW !== originalWidth - dx) newX = originalX + originalWidth - newW; if (newH !== originalHeight - dy) newY = originalY + originalHeight - newH;} if (handle === 'tr') { if (newH !== originalHeight - dy) newY = originalY + originalHeight - newH;} } item.x = newX; item.y = newY; item.width = Math.max(handleSize * 2, newW); item.height = Math.max(handleSize * 2, newH); } else if (isRotatingContent && selectedImageOnCanvas) { needsRedraw = true; const item = initialInteractionState.item; const { itemCenterX, itemCenterY, originalRotation, initialMouseAngleToCenter } = initialInteractionState; const currentMouseAngleToCenter = Math.atan2(mousePos.y - itemCenterY, mousePos.x - itemCenterX); let angleDelta = currentMouseAngleToCenter - initialMouseAngleToCenter; let newRotation = originalRotation + (angleDelta * 180 / Math.PI); item.rotation = (newRotation % 360 + 360) % 360; updateImageEditControls(); currentCursor = 'alias'; } else if (isPanningContent && selectedImageOnCanvas) { needsRedraw = true; const item = initialInteractionState.item; const dx = mousePos.x - initialInteractionState.mouseDownPos.x; const dy = mousePos.y - initialInteractionState.mouseDownPos.y; item.panOffset.x = initialInteractionState.originalPanX + dx; item.panOffset.y = initialInteractionState.originalPanY + dy; currentCursor = 'grabbing'; } else { const page = documentPages[currentPageIndex]; if (page) { let foundHandle = false; for (let i = page.images.length - 1; i >= 0; i--) { const itemToCheck = (selectedImageOnCanvas && i === page.images.indexOf(selectedImageOnCanvas)) ? selectedImageOnCanvas : page.images[i]; if (!itemToCheck) continue; const handle = getHandleAt(mousePos, itemToCheck); if (handle) { if (handle === 'rot') currentCursor = 'alias'; else if (handle === 'tl' || handle === 'br') currentCursor = 'nwse-resize'; else if (handle === 'tr' || handle === 'bl') currentCursor = 'nesw-resize'; foundHandle = true; break; } if (isPointInRect(mousePos.x, mousePos.y, itemToCheck.x, itemToCheck.y, itemToCheck.width, itemToCheck.height)) { currentCursor = (e.altKey || e.ctrlKey) ? 'grab' : 'move'; foundHandle = true; break; } } } } canvas.style.cursor = currentCursor; if (needsRedraw) { drawCanvas(); } };
-        canvas.onmouseup = () => { isDraggingFrame = false; isResizingFrame = false; isRotatingContent = false; isPanningContent = false; resizeHandle = null; initialInteractionState = {}; canvas.style.cursor = 'default';};
-        canvas.ondblclick = (e) => { const mousePos = getMousePos(canvas, e); let clickedOnItem = false; if (selectedImageOnCanvas) { if (isPointInRect(mousePos.x, mousePos.y, selectedImageOnCanvas.x, selectedImageOnCanvas.y, selectedImageOnCanvas.width, selectedImageOnCanvas.height)) { clickedOnItem = true; } } if (!clickedOnItem) { selectedImageOnCanvas = null; updateImageEditControls(); drawCanvas(); }};
-        document.addEventListener('keydown', (e) => { if (selectedImageOnCanvas && (e.key === 'Delete' || e.key === 'Backspace')) { e.preventDefault(); deleteSelectedImageFromCanvas(); } if (selectedImageOnCanvas && ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) { e.preventDefault(); const moveStep = e.shiftKey ? 10 : 1; if (e.altKey || e.ctrlKey) { if (!selectedImageOnCanvas.panOffset) selectedImageOnCanvas.panOffset = {x:0, y:0}; switch(e.key) { case 'ArrowUp': selectedImageOnCanvas.panOffset.y -= moveStep; break; case 'ArrowDown': selectedImageOnCanvas.panOffset.y += moveStep; break; case 'ArrowLeft': selectedImageOnCanvas.panOffset.x -= moveStep; break; case 'ArrowRight': selectedImageOnCanvas.panOffset.x += moveStep; break; } } else { switch(e.key) { case 'ArrowUp': selectedImageOnCanvas.y -= moveStep; break; case 'ArrowDown': selectedImageOnCanvas.y += moveStep; break; case 'ArrowLeft': selectedImageOnCanvas.x -= moveStep; break; case 'ArrowRight': selectedImageOnCanvas.x += moveStep; break; } } drawCanvas(); } });
-        function updateImageEditControls() { if (selectedImageOnCanvas) { imageEditControlsPanel.style.display = 'block'; const item = selectedImageOnCanvas; zoomRange.value = item.zoomLevel || 1.0; zoomValue.textContent = (item.zoomLevel || 1.0).toFixed(2); let displayRotation = (item.rotation || 0); displayRotation = (displayRotation % 360 + 360) % 360; rotationRange.value = displayRotation; rotationValueDisplay.textContent = `${Math.round(displayRotation)}deg`; opacityRange.value = item.alpha || 1.0; opacityValue.textContent = (item.alpha || 1.0).toFixed(2); const filters = item.filters || {brightness:100, contrast:100, saturate:100}; brightnessRange.value = filters.brightness; brightnessValue.textContent = `${filters.brightness}%`; contrastRange.value = filters.contrast; contrastValue.textContent = `${filters.contrast}%`; saturateRange.value = filters.saturate; saturateValue.textContent = `${filters.saturate}%`; } else { imageEditControlsPanel.style.display = 'none'; } }
+        function getHandleAt(mousePos, item) { const hHit = handleHitRadius; if (Math.abs(mousePos.x - item.x) < hHit && Math.abs(mousePos.y - item.y) < hHit) return 'tl'; if (Math.abs(mousePos.x - (item.x + item.width)) < hHit && Math.abs(mousePos.y - item.y) < hHit) return 'tr'; if (Math.abs(mousePos.x - item.x) < hHit && Math.abs(mousePos.y - (item.y + item.height)) < hHit) return 'bl'; if (Math.abs(mousePos.x - (item.x + item.width)) < hHit && Math.abs(mousePos.y - (item.y + item.height)) < hHit) return 'br'; const rotHandleX = item.x + item.width / 2; const rotHandleY = item.y - handleSize * 1.5; const dxRot = mousePos.x - rotHandleX; const dyRot = mousePos.y - rotHandleY; if (dxRot * dxRot + dyRot * dyRot <= (handleSize / 1.5 + hHit - handleSize / 2) * (handleSize / 1.5 + hHit - handleSize / 2)) return 'rot'; return null; }
+        canvas.onmousedown = (e) => { const mousePos = getMousePos(canvas, e); const page = documentPages[currentPageIndex]; if (!page) return; isDraggingFrame = false; isResizingFrame = false; isRotatingContent = false; isPanningContent = false; let newSelectedImage = null; let clickedOnExistingSelectionHandle = false; if (selectedImageOnCanvas) { resizeHandle = getHandleAt(mousePos, selectedImageOnCanvas); if (resizeHandle) { clickedOnExistingSelectionHandle = true; newSelectedImage = selectedImageOnCanvas; initialInteractionState = { item: selectedImageOnCanvas, handle: resizeHandle, originalX: selectedImageOnCanvas.x, originalY: selectedImageOnCanvas.y, originalWidth: selectedImageOnCanvas.width, originalHeight: selectedImageOnCanvas.height, originalRotation: selectedImageOnCanvas.rotation || 0, originalZoom: selectedImageOnCanvas.zoomLevel || 1.0, originalPanX: (selectedImageOnCanvas.panOffset && selectedImageOnCanvas.panOffset.x) || 0, originalPanY: (selectedImageOnCanvas.panOffset && selectedImageOnCanvas.panOffset.y) || 0, mouseDownPos: mousePos, itemCenterX: selectedImageOnCanvas.x + selectedImageOnCanvas.width / 2, itemCenterY: selectedImageOnCanvas.y + selectedImageOnCanvas.height / 2, }; initialInteractionState.initialMouseAngleToCenter = Math.atan2(mousePos.y - initialInteractionState.itemCenterY, mousePos.x - initialInteractionState.itemCenterX); if (resizeHandle === 'rot') { isRotatingContent = true; } else { isResizingFrame = true; } } } if (!isResizingFrame && !isRotatingContent) { for (let i = page.images.length - 1; i >= 0; i--) { const item = page.images[i]; if (isPointInRect(mousePos.x, mousePos.y, item.x, item.y, item.width, item.height)) { newSelectedImage = item; if (e.altKey || e.ctrlKey) { isPanningContent = true; initialInteractionState = { item: item, originalPanX: (item.panOffset && item.panOffset.x) || 0, originalPanY: (item.panOffset && item.panOffset.y) || 0, mouseDownPos: mousePos }; } else { isDraggingFrame = true; dragOffsetX = mousePos.x - item.x; dragOffsetY = mousePos.y - item.y; } if (selectedImageOnCanvas !== item && !isPanningContent && !item.isTiled) { page.images.splice(i, 1); page.images.push(item); } break; } } } if (newSelectedImage && newSelectedImage !== selectedImageOnCanvas) { selectedImageOnCanvas = newSelectedImage; } else if (!newSelectedImage && !clickedOnExistingSelectionHandle) { selectedImageOnCanvas = null; } updateImageEditControls(); drawCanvas(); };
+        canvas.onmousemove = (e) => { const mousePos = getMousePos(canvas, e); let needsRedraw = false; let currentCursor = 'default'; if (isDraggingFrame && selectedImageOnCanvas) { needsRedraw = true; selectedImageOnCanvas.x = mousePos.x - dragOffsetX; selectedImageOnCanvas.y = mousePos.y - dragOffsetY; currentCursor = 'move'; } else if (isResizingFrame && selectedImageOnCanvas) { needsRedraw = true; const item = initialInteractionState.item; const { originalX, originalY, originalWidth, originalHeight, handle, mouseDownPos } = initialInteractionState; let newX = item.x, newY = item.y, newW = item.width, newH = item.height; const dx = mousePos.x - mouseDownPos.x; const dy = mousePos.y - mouseDownPos.y; if (handle === 'tl') { newX = originalX + dx; newY = originalY + dy; newW = originalWidth - dx; newH = originalHeight - dy; currentCursor = 'nwse-resize'; } else if (handle === 'tr') { newY = originalY + dy; newW = originalWidth + dx; newH = originalHeight - dy; currentCursor = 'nesw-resize'; } else if (handle === 'bl') { newX = originalX + dx; newW = originalWidth - dx; newH = originalHeight + dy; currentCursor = 'nesw-resize'; } else if (handle === 'br') { newW = originalWidth + dx; newH = originalHeight + dy; currentCursor = 'nwse-resize'; } if (e.shiftKey) { const aspect = originalWidth / originalHeight; if (handle.includes('l') || handle.includes('r')) { newH = newW / aspect; } else if (handle.includes('t') || handle.includes('b')) { newW = newH * aspect; } else { if (Math.abs(newW - originalWidth) > Math.abs(newH - originalHeight)) { newH = newW / aspect; } else { newW = newH * aspect; } } if (handle === 'tl') { if (newW !== originalWidth - dx) newX = originalX + originalWidth - newW; if (newH !== originalHeight - dy) newY = originalY + originalHeight - newH; } if (handle === 'tr') { if (newH !== originalHeight - dy) newY = originalY + originalHeight - newH; } } item.x = newX; item.y = newY; item.width = Math.max(handleSize * 2, newW); item.height = Math.max(handleSize * 2, newH); } else if (isRotatingContent && selectedImageOnCanvas) { needsRedraw = true; const item = initialInteractionState.item; const { itemCenterX, itemCenterY, originalRotation, initialMouseAngleToCenter } = initialInteractionState; const currentMouseAngleToCenter = Math.atan2(mousePos.y - itemCenterY, mousePos.x - itemCenterX); let angleDelta = currentMouseAngleToCenter - initialMouseAngleToCenter; let newRotation = originalRotation + (angleDelta * 180 / Math.PI); item.rotation = (newRotation % 360 + 360) % 360; updateImageEditControls(); currentCursor = 'alias'; } else if (isPanningContent && selectedImageOnCanvas) { needsRedraw = true; const item = initialInteractionState.item; const dx = mousePos.x - initialInteractionState.mouseDownPos.x; const dy = mousePos.y - initialInteractionState.mouseDownPos.y; item.panOffset.x = initialInteractionState.originalPanX + dx; item.panOffset.y = initialInteractionState.originalPanY + dy; currentCursor = 'grabbing'; } else { const page = documentPages[currentPageIndex]; if (page) { let foundHandle = false; for (let i = page.images.length - 1; i >= 0; i--) { const itemToCheck = (selectedImageOnCanvas && i === page.images.indexOf(selectedImageOnCanvas)) ? selectedImageOnCanvas : page.images[i]; if (!itemToCheck) continue; const handle = getHandleAt(mousePos, itemToCheck); if (handle) { if (handle === 'rot') currentCursor = 'alias'; else if (handle === 'tl' || handle === 'br') currentCursor = 'nwse-resize'; else if (handle === 'tr' || handle === 'bl') currentCursor = 'nesw-resize'; foundHandle = true; break; } if (isPointInRect(mousePos.x, mousePos.y, itemToCheck.x, itemToCheck.y, itemToCheck.width, itemToCheck.height)) { currentCursor = (e.altKey || e.ctrlKey) ? 'grab' : 'move'; foundHandle = true; break; } } } } canvas.style.cursor = currentCursor; if (needsRedraw) { drawCanvas(); } };
+        canvas.onmouseup = () => { isDraggingFrame = false; isResizingFrame = false; isRotatingContent = false; isPanningContent = false; resizeHandle = null; initialInteractionState = {}; canvas.style.cursor = 'default'; };
+        canvas.ondblclick = (e) => { const mousePos = getMousePos(canvas, e); let clickedOnItem = false; if (selectedImageOnCanvas) { if (isPointInRect(mousePos.x, mousePos.y, selectedImageOnCanvas.x, selectedImageOnCanvas.y, selectedImageOnCanvas.width, selectedImageOnCanvas.height)) { clickedOnItem = true; } } if (!clickedOnItem) { selectedImageOnCanvas = null; updateImageEditControls(); drawCanvas(); } };
+        document.addEventListener('keydown', (e) => { if (selectedImageOnCanvas && (e.key === 'Delete' || e.key === 'Backspace')) { e.preventDefault(); deleteSelectedImageFromCanvas(); } if (selectedImageOnCanvas && ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) { e.preventDefault(); const moveStep = e.shiftKey ? 10 : 1; if (e.altKey || e.ctrlKey) { if (!selectedImageOnCanvas.panOffset) selectedImageOnCanvas.panOffset = { x: 0, y: 0 }; switch (e.key) { case 'ArrowUp': selectedImageOnCanvas.panOffset.y -= moveStep; break; case 'ArrowDown': selectedImageOnCanvas.panOffset.y += moveStep; break; case 'ArrowLeft': selectedImageOnCanvas.panOffset.x -= moveStep; break; case 'ArrowRight': selectedImageOnCanvas.panOffset.x += moveStep; break; } } else { switch (e.key) { case 'ArrowUp': selectedImageOnCanvas.y -= moveStep; break; case 'ArrowDown': selectedImageOnCanvas.y += moveStep; break; case 'ArrowLeft': selectedImageOnCanvas.x -= moveStep; break; case 'ArrowRight': selectedImageOnCanvas.x += moveStep; break; } } drawCanvas(); } });
+        function updateImageEditControls() { if (selectedImageOnCanvas) { imageEditControlsPanel.style.display = 'block'; const item = selectedImageOnCanvas; zoomRange.value = item.zoomLevel || 1.0; zoomValue.textContent = (item.zoomLevel || 1.0).toFixed(2); let displayRotation = (item.rotation || 0); displayRotation = (displayRotation % 360 + 360) % 360; rotationRange.value = displayRotation; rotationValueDisplay.textContent = `${Math.round(displayRotation)}deg`; opacityRange.value = item.alpha || 1.0; opacityValue.textContent = (item.alpha || 1.0).toFixed(2); const filters = item.filters || { brightness: 100, contrast: 100, saturate: 100 }; brightnessRange.value = filters.brightness; brightnessValue.textContent = `${filters.brightness}%`; contrastRange.value = filters.contrast; contrastValue.textContent = `${filters.contrast}%`; saturateRange.value = filters.saturate; saturateValue.textContent = `${filters.saturate}%`; } else { imageEditControlsPanel.style.display = 'none'; } }
         function applyImageEditsFromPanel() { if (!selectedImageOnCanvas) return; const item = selectedImageOnCanvas; item.alpha = parseFloat(opacityRange.value); if (!item.filters) item.filters = {}; item.filters.brightness = parseInt(brightnessRange.value); item.filters.contrast = parseInt(contrastRange.value); item.filters.saturate = parseInt(saturateRange.value); item.rotation = parseFloat(rotationRange.value); item.zoomLevel = parseFloat(zoomRange.value); rotationValueDisplay.textContent = `${Math.round(item.rotation)}deg`; zoomValue.textContent = (item.zoomLevel || 1.0).toFixed(2); opacityValue.textContent = (item.alpha || 1.0).toFixed(2); brightnessValue.textContent = `${item.filters.brightness}%`; contrastValue.textContent = `${item.filters.contrast}%`; saturateValue.textContent = `${item.filters.saturate}%`; drawCanvas(); renderPagePreviews(); }
-        [opacityRange, brightnessRange, contrastRange, saturateRange, rotationRange, zoomRange].forEach( input => input.oninput = applyImageEditsFromPanel );
+        [opacityRange, brightnessRange, contrastRange, saturateRange, rotationRange, zoomRange].forEach(input => input.oninput = applyImageEditsFromPanel);
         function deleteSelectedImageFromCanvas() { const page = documentPages[currentPageIndex]; if (selectedImageOnCanvas && page) { const index = page.images.indexOf(selectedImageOnCanvas); if (index > -1) page.images.splice(index, 1); selectedImageOnCanvas = null; updateImageEditControls(); drawCanvas(); renderPagePreviews(); } }
         deleteImageBtn.onclick = deleteSelectedImageFromCanvas;
         bringToFrontBtn.onclick = () => { const page = documentPages[currentPageIndex]; if (selectedImageOnCanvas && page && !selectedImageOnCanvas.isTiled) { const index = page.images.indexOf(selectedImageOnCanvas); if (index > -1 && index < page.images.length - 1) { page.images.splice(index, 1); page.images.push(selectedImageOnCanvas); drawCanvas(); } } else if (selectedImageOnCanvas && selectedImageOnCanvas.isTiled) { alert("平铺图片不支持层级调整。"); } };
@@ -580,7 +824,7 @@
         downloadAllPagesBtn.onclick = async () => { const originalPageIndex = currentPageIndex; const originalSelectedImage = selectedImageOnCanvas; for (let i = 0; i < documentPages.length; i++) { selectedImageOnCanvas = null; drawCanvas(ctx, canvas, false, i, false); await new Promise(resolve => setTimeout(resolve, 50)); const dataURL = canvas.toDataURL('image/png'); const a = document.createElement('a'); a.href = dataURL; a.download = `A4_Doc_Page_${i + 1}_${Date.now()}.png`; document.body.appendChild(a); a.click(); document.body.removeChild(a); } currentPageIndex = originalPageIndex; selectedImageOnCanvas = originalSelectedImage; updatePageNavigationUI(); updateImageEditControls(); drawCanvas(); renderPagePreviews(); };
         clearCurrentPageBtn.onclick = () => { const page = documentPages[currentPageIndex]; if (page && confirm(`确定要清空第 ${currentPageIndex + 1} 页上的所有图片吗？`)) { page.images = []; selectedImageOnCanvas = null; updateImageEditControls(); drawCanvas(); renderPagePreviews(); } };
         function updateMoveButtonsState() { if (!selectedGalleryItemId) { moveGalleryItemUpBtn.disabled = true; moveGalleryItemDownBtn.disabled = true; return; } const currentIndex = galleryFileItems.findIndex(item => item.id === selectedGalleryItemId); moveGalleryItemUpBtn.disabled = (currentIndex <= 0); moveGalleryItemDownBtn.disabled = (currentIndex >= galleryFileItems.length - 1 || currentIndex === -1); }
-        function reorderGalleryItem(direction) { if (!selectedGalleryItemId) return; const currentIndexInGallery = galleryFileItems.findIndex(item => item.id === selectedGalleryItemId); if (currentIndexInGallery === -1) return; const newIndexInGallery = currentIndexInGallery + direction; if (newIndexInGallery < 0 || newIndexInGallery >= galleryFileItems.length) return; [galleryFileItems[currentIndexInGallery], galleryFileItems[newIndexInGallery]] = [galleryFileItems[newIndexInGallery], galleryFileItems[currentIndexInGallery]]; const oldEditorReadyImagesMap = new Map(editorReadyImages.map(img => [img.id, img])); editorReadyImages = []; galleryFileItems.forEach(galleryItem => { if (galleryItem.status === 'loaded' && oldEditorReadyImagesMap.has(galleryItem.id)) { editorReadyImages.push(oldEditorReadyImagesMap.get(galleryItem.id)); } }); updateGalleryDisplay(); }
+        function reorderGalleryItem(direction) { if (!selectedGalleryItemId) return; const currentIndexInGallery = galleryFileItems.findIndex(item => item.id === selectedGalleryItemId); if (currentIndexInGallery === -1) return; const newIndexInGallery = currentIndexInGallery + direction; if (newIndexInGallery < 0 || newIndexInGallery >= galleryFileItems.length) return;[galleryFileItems[currentIndexInGallery], galleryFileItems[newIndexInGallery]] = [galleryFileItems[newIndexInGallery], galleryFileItems[currentIndexInGallery]]; const oldEditorReadyImagesMap = new Map(editorReadyImages.map(img => [img.id, img])); editorReadyImages = []; galleryFileItems.forEach(galleryItem => { if (galleryItem.status === 'loaded' && oldEditorReadyImagesMap.has(galleryItem.id)) { editorReadyImages.push(oldEditorReadyImagesMap.get(galleryItem.id)); } }); updateGalleryDisplay(); }
         moveGalleryItemUpBtn.onclick = () => reorderGalleryItem(-1);
         moveGalleryItemDownBtn.onclick = () => reorderGalleryItem(1);
 
@@ -592,18 +836,19 @@
         imageGallery.ondblclick = (e) => { const targetContainer = e.target.closest('.gallery-item-container'); if (targetContainer && targetContainer.dataset.id === selectedGalleryItemId) { const gallerySelection = editorReadyImages.find(img => img.id === selectedGalleryItemId); if (gallerySelection && gallerySelection.originalImage) { const imgObj = gallerySelection.originalImage; const page = documentPages[currentPageIndex]; if (!page) return; const usableWidth = canvas.width - marginLeftPx - marginRightPx; const usableHeight = canvas.height - marginTopPx - marginBottomPx; let newWidth = imgObj.width; let newHeight = imgObj.height; const maxDim = Math.min(usableWidth, usableHeight) / 2; if (newWidth > maxDim || newHeight > maxDim) { const aspect = newWidth / newHeight; if (newWidth > newHeight) { newWidth = maxDim; newHeight = newWidth / aspect; } else { newHeight = maxDim; newWidth = newHeight * aspect; } } const newX = marginLeftPx + (usableWidth - newWidth) / 2; const newY = marginTopPx + (usableHeight - newHeight) / 2; const newItem = createNewImageItemDefaults(imgObj, newX, newY, newWidth, newHeight, false); page.images.push(newItem); selectedImageOnCanvas = newItem; updateImageEditControls(); drawCanvas(); renderPagePreviews(); } } };
 
         function initializeEditor() {
-            documentPages.push(createNewPage()); 
-            setCanvasDimensions(); 
-            updatePageNavigationUI(); 
-            updateGalleryDisplay(); 
+            documentPages.push(createNewPage());
+            setCanvasDimensions();
+            updatePageNavigationUI();
+            updateGalleryDisplay();
             rotationRange.min = "0"; rotationRange.max = "360"; rotationRange.value = "0";
-            if(rotationValueDisplay) rotationValueDisplay.textContent = "0deg";
-            zoomRange.min = String(MIN_CONTENT_ZOOM); 
-            zoomRange.max = String(MAX_CONTENT_ZOOM); 
+            if (rotationValueDisplay) rotationValueDisplay.textContent = "0deg";
+            zoomRange.min = String(MIN_CONTENT_ZOOM);
+            zoomRange.max = String(MAX_CONTENT_ZOOM);
             zoomRange.value = "1.0";
-            if(zoomValue) zoomValue.textContent = "1.00";
+            if (zoomValue) zoomValue.textContent = "1.00";
         }
         initializeEditor();
     </script>
 </body>
+
 </html>
