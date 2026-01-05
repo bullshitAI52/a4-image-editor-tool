@@ -672,7 +672,9 @@
                 const frameCenterY = itemFrameY + itemFrameH / 2;
                 targetCtx.translate(frameCenterX, frameCenterY);
 
-                if (item.panOffset && (item.panOffset.x !== 0 || item.panOffset.y !== 0)) {
+                // FIX: Only apply generic pan translation for non-tiled items. 
+                // Tiled items handle pan internally with clamping constraints.
+                if (!item.isTiled && item.panOffset && (item.panOffset.x !== 0 || item.panOffset.y !== 0)) {
                     targetCtx.translate(item.panOffset.x * scaleFactor, item.panOffset.y * scaleFactor);
                 }
                 targetCtx.rotate((item.rotation || 0) * Math.PI / 180);
